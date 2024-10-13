@@ -2,199 +2,158 @@
   <div class="row d-flex align-items-center">
     <div class="col-md-12">
       <div class="row d-flex justify-content-center">
-        <form [formGroup]="form" class="col-12">
-          <div class="col-sm-11 shadow-lg p-3 mt-4 mb-4 bg-body rounded cardLogin">
-            <h3 class="mb-3">Cadastro</h3>
+        <form [formGroup]="form" class="col-11">
+
+          <div class="col-12 shadow-lg p-3 mt-4 mb-4 bg-body rounded cardLogin">
+            <h4 class="mb-3">Cadastro</h4>
 
             <div class="row">
               <div class="form-group col-md-4">
                 <label for="razaoSocial" class="mb-1 mt-3">Razão Social*</label>
-                <input formControlName="razaoSocial" class="form-control" type="text" name="razaoSocial"
-                  id="razaoSocial" placeholder="Ex: Empresa LTDA">
-                <small class="form-text text-danger"
-                  *ngIf="!form.get('razaoSocial')?.valid && (form.get('razaoSocial')?.dirty || form.get('razaoSocial')?.touched)">Campo
-                  obrigatório!</small>
+                <input formControlName="razaoSocial" class="form-control" type="text" id="razaoSocial" placeholder="Ex: Empresa LTDA">
+                <small class="form-text text-danger" *ngIf="form.get('razaoSocial')?.invalid && (form.get('razaoSocial')?.dirty || form.get('razaoSocial')?.touched)">Campo obrigatório!</small>
               </div>
 
               <div class="form-group col-md-4">
                 <label for="nomeFantasia" class="mb-1 mt-3">Nome Fantasia*</label>
-                <input formControlName="nomeFantasia" class="form-control" type="text" name="nomeFantasia"
-                  id="nomeFantasia" placeholder="Ex: Empresa">
-                <small class="form-text text-danger"
-                  *ngIf="!form.get('nomeFantasia')?.valid && (form.get('nomeFantasia')?.dirty || form.get('nomeFantasia')?.touched)">Campo
-                  obrigatório!</small>
+                <input formControlName="nomeFantasia" class="form-control" type="text" id="nomeFantasia" placeholder="Ex: Empresa">
+                <small class="form-text text-danger" *ngIf="form.get('nomeFantasia')?.invalid && (form.get('nomeFantasia')?.dirty || form.get('nomeFantasia')?.touched)">Campo obrigatório!</small>
               </div>
 
               <div class="form-group col-md-4">
                 <label for="cnpj" class="mb-1 mt-3">CNPJ*</label>
-                <input formControlName="cnpj" class="form-control" type="text" mask="00.000.000/0000-00" name="cnpj"
-                  id="cnpj" placeholder="Ex: 12.345.678/0001-99">
-                <small class="form-text text-danger"
-                  *ngIf="!form.get('cnpj')?.valid && (form.get('cnpj')?.dirty || form.get('cnpj')?.touched)">Campo
-                  obrigatório!</small>
+                <input formControlName="cnpj" class="form-control" type="text" mask="00.000.000/0000-00" id="cnpj" placeholder="Ex: 12.345.678/0001-99">
+                <small class="form-text text-danger" *ngIf="form.get('cnpj')?.invalid && (form.get('cnpj')?.dirty || form.get('cnpj')?.touched)">Campo obrigatório!</small>
               </div>
             </div>
 
             <div class="row">
               <div class="form-group col-md-4">
                 <label for="inscricaoEstadual" class="mb-1 mt-3">Inscrição Estadual</label>
-                <input formControlName="inscricaoEstadual" class="form-control" type="text" name="inscricaoEstadual"
-                  id="inscricaoEstadual" placeholder="123.456.789.112">
-                <small class="form-text text-danger"
-                  *ngIf="!form.get('inscricaoEstadual')?.valid && (form.get('inscricaoEstadual')?.dirty || form.get('inscricaoEstadual')?.touched)">Campo
-                  obrigatório!</small>
+                <input formControlName="inscricaoEstadual" class="form-control" type="text" id="inscricaoEstadual" placeholder="123.456.789.112">
+                <small class="form-text text-danger" *ngIf="form.get('inscricaoEstadual')?.invalid && (form.get('inscricaoEstadual')?.dirty || form.get('inscricaoEstadual')?.touched)">Campo obrigatório!</small>
               </div>
 
               <div class="form-group col-md-4">
                 <label for="inscricaoCcm" class="mb-1 mt-3">Inscrição CCM</label>
-                <input formControlName="inscricaoCcm" class="form-control" type="text" name="inscricaoCcm"
-                  id="inscricaoCcm" placeholder="12345678-9">
-                <small class="form-text text-danger"
-                  *ngIf="!form.get('inscricaoCcm')?.valid && (form.get('inscricaoCcm')?.dirty || form.get('inscricaoCcm')?.touched)">Campo
-                  obrigatório!</small>
+                <input formControlName="inscricaoCcm" class="form-control" type="text" id="inscricaoCcm" placeholder="12345678-9">
+                <small class="form-text text-danger" *ngIf="form.get('inscricaoCcm')?.invalid && (form.get('inscricaoCcm')?.dirty || form.get('inscricaoCcm')?.touched)">Campo obrigatório!</small>
               </div>
 
               <div class="form-group col-md-4">
                 <label for="codigoContabil" class="mb-1 mt-3">Código Contábil</label>
-                <input formControlName="codigoContabil" class="form-control" type="text" name="codigoContabil"
-                  id="codigoContabil" placeholder="1234">
-                <small class="form-text text-danger"
-                  *ngIf="!form.get('codigoContabil')?.valid && (form.get('codigoContabil')?.dirty || form.get('codigoContabil')?.touched)">Campo
-                  obrigatório!</small>
+                <input formControlName="codigoContabil" class="form-control" type="text" id="codigoContabil" placeholder="1234">
+                <small class="form-text text-danger" *ngIf="form.get('codigoContabil')?.invalid && (form.get('codigoContabil')?.dirty || form.get('codigoContabil')?.touched)">Campo obrigatório!</small>
               </div>
             </div>
 
             <div class="row">
               <div class="form-group col-md-4">
                 <label for="email" class="mb-1 mt-3">E-mail*</label>
-                <input formControlName="email" class="form-control" type="text" name="email" id="email"
-                  placeholder="Ex: exemplo@dominio.com">
-                <small class="form-text text-danger"
-                  *ngIf="!form.get('email')?.valid && (form.get('email')?.dirty || form.get('email')?.touched)">Campo
-                  obrigatório!</small>
+                <input formControlName="email" class="form-control" type="email" id="email" placeholder="Ex: exemplo@dominio.com">
+                <small class="form-text text-danger" *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">Campo obrigatório!</small>
               </div>
 
               <div class="form-group col-md-4">
                 <label for="senha" class="mb-1 mt-3">Senha*</label>
-                <input formControlName="senha" (input)="confirmeSenha($event)" class="form-control" type="password"
-                  name="senha" id="senha" placeholder="Digite sua senha">
-                <small class="form-text text-danger"
-                  *ngIf="!form.get('senha')?.valid && (form.get('senha')?.dirty || form.get('senha')?.touched)">Campo
-                  obrigatório!</small>
+                <input formControlName="senha" (input)="confirmeSenha($event)" class="form-control" type="password" id="senha" placeholder="Digite sua senha">
+                <small class="form-text text-danger" *ngIf="form.get('senha')?.invalid && (form.get('senha')?.dirty || form.get('senha')?.touched)">Campo obrigatório!</small>
               </div>
 
               <div class="form-group col-md-4">
                 <label for="confirmeSenha" class="mb-1 mt-3">Confirmar Senha*</label>
-                <input formControlName="confirmeSenha" class="form-control" type="password" name="confirmeSenha"
-                  id="confirmeSenha" placeholder="Digite sua senha">
-                <small class="form-text text-danger"
-                  *ngIf="!form.get('confirmeSenha')?.valid && (form.get('confirmeSenha')?.dirty || form.get('confirmeSenha')?.touched)">Campo
-                  obrigatório!</small>
+                <input formControlName="confirmeSenha" class="form-control" type="password" id="confirmeSenha" placeholder="Digite sua senha">
+                <small class="form-text text-danger" *ngIf="form.get('confirmeSenha')?.invalid && (form.get('confirmeSenha')?.dirty || form.get('confirmeSenha')?.touched)">Campo obrigatório!</small>
               </div>
             </div>
           </div>
-
-
 
           <!-- Endereço de Entrega -->
-
-          <div class="col-11 shadow-lg p-3 mt-4 mb-4 bg-body rounded cardLogin">
-            <div class="mb-4">
-              <h3 class="mb-3">Endereço de Entrega</h3>
-              <div formGroupName="enderecoEntrega" class="col-md-12">
-  
-                <div class="row">
-                  <div class="form-group col-md-4">
-                    <label for="cepEntrega">CEP*</label>
-                    <input formControlName="cep" class="form-control" id="cepEntrega" placeholder="CEP">
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="logradouroEntrega">Logradouro*</label>
-                    <input formControlName="logradouro" class="form-control" id="logradouroEntrega"
-                      placeholder="Ex: Rua, Avenida">
-                  </div>
-  
-                  <div class="form-group col-md-4">
-                    <label for="numeroEntrega">Número*</label>
-                    <input formControlName="numero" class="form-control" id="numeroEntrega"
-                      placeholder="Número da residência">
-                  </div>
+          <div class="col-12 shadow-lg p-3 mt-4 mb-4 bg-body rounded cardLogin">
+            <h4 class="mb-3">Endereço de Entrega</h4>
+            <div formGroupName="enderecoEntrega" class="col-md-12">
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label for="cepEntrega">CEP*</label>
+                  <input formControlName="cep" class="form-control" id="cepEntrega" placeholder="CEP">
                 </div>
-  
-                <div class="row">
-                  <div class="form-group col-md-4">
-                    <label for="bairroEntrega">Bairro*</label>
-                    <input formControlName="bairro" class="form-control" id="bairroEntrega" placeholder="Bairro">
-                  </div>
-  
-                  <div class="form-group col-md-4">
-                    <label for="cidadeEntrega">Cidade*</label>
-                    <input formControlName="cidade" class="form-control" id="cidadeEntrega" placeholder="Cidade">
-                  </div>
-  
-                  <div class="form-group col-md-4">
-                    <label for="estadoEntrega">Estado*</label>
-                    <input formControlName="estado" class="form-control" id="estadoEntrega" placeholder="Estado">
-                  </div>
+
+                <div class="form-group col-md-4">
+                  <label for="logradouroEntrega">Logradouro*</label>
+                  <input formControlName="logradouro" class="form-control" id="logradouroEntrega" placeholder="Ex: Rua, Avenida">
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label for="numeroEntrega">Número*</label>
+                  <input formControlName="numero" class="form-control" id="numeroEntrega" placeholder="Número da residência">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label for="bairroEntrega">Bairro*</label>
+                  <input formControlName="bairro" class="form-control" id="bairroEntrega" placeholder="Bairro">
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label for="cidadeEntrega">Cidade*</label>
+                  <input formControlName="cidade" class="form-control" id="cidadeEntrega" placeholder="Cidade">
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label for="estadoEntrega">Estado*</label>
+                  <input formControlName="estado" class="form-control" id="estadoEntrega" placeholder="Estado">
                 </div>
               </div>
             </div>
           </div>
 
-
-
-          
           <!-- Endereço de Faturamento -->
-  
-          <div class="col-11 shadow-lg p-3 mt-4 mb-4 bg-body rounded cardLogin">
-            <div class="mb-4">
-              <h3 class="mb-3">Endereço de Faturamento</h3>
-              <form formGroupName="enderecoFaturamento" class="col-md-12">
-  
-                <div class="row">
-                  <div class="form-group col-md-4">
-                    <label for="cepEntrega">CEP*</label>
-                    <input formControlName="cep" class="form-control" id="cepEntrega" placeholder="CEP">
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="logradouroEntrega">Logradouro*</label>
-                    <input formControlName="logradouro" class="form-control" id="logradouroEntrega"
-                      placeholder="Ex: Rua, Avenida">
-                  </div>
-  
-                  <div class="form-group col-md-4">
-                    <label for="numeroEntrega">Número*</label>
-                    <input formControlName="numero" class="form-control" id="numeroEntrega"
-                      placeholder="Número da residência">
-                  </div>
+          <div class="col-12 shadow-lg p-3 mt-4 mb-4 bg-body rounded cardLogin">
+            <h4 class="mb-3">Endereço de Faturamento</h4>
+            <div formGroupName="enderecoFaturamento" class="col-md-12">
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label for="cepFaturamento">CEP*</label>
+                  <input formControlName="cep" class="form-control" id="cepFaturamento" placeholder="CEP">
                 </div>
-  
-                <div class="row">
-                  <div class="form-group col-md-4">
-                    <label for="bairroEntrega">Bairro*</label>
-                    <input formControlName="bairro" class="form-control" id="bairroEntrega" placeholder="Bairro">
-                  </div>
-  
-                  <div class="form-group col-md-4">
-                    <label for="cidadeEntrega">Cidade*</label>
-                    <input formControlName="cidade" class="form-control" id="cidadeEntrega" placeholder="Cidade">
-                  </div>
-  
-                  <div class="form-group col-md-4">
-                    <label for="estadoEntrega">Estado*</label>
-                    <input formControlName="estado" class="form-control" id="estadoEntrega" placeholder="Estado">
-                  </div>
+
+                <div class="form-group col-md-4">
+                  <label for="logradouroFaturamento">Logradouro*</label>
+                  <input formControlName="logradouro" class="form-control" id="logradouroFaturamento" placeholder="Ex: Rua, Avenida">
                 </div>
-              </form>
+
+                <div class="form-group col-md-4">
+                  <label for="numeroFaturamento">Número*</label>
+                  <input formControlName="numero" class="form-control" id="numeroFaturamento" placeholder="Número da residência">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label for="bairroFaturamento">Bairro*</label>
+                  <input formControlName="bairro" class="form-control" id="bairroFaturamento" placeholder="Bairro">
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label for="cidadeFaturamento">Cidade*</label>
+                  <input formControlName="cidade" class="form-control" id="cidadeFaturamento" placeholder="Cidade">
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label for="estadoFaturamento">Estado*</label>
+                  <input formControlName="estado" class="form-control" id="estadoFaturamento" placeholder="Estado">
+                </div>
+              </div>
             </div>
           </div>
+
         </form>
 
         <div class="d-flex justify-content-center mt-3">
-          <button type="submit" class="btn btn-danger me-4" (click)='cancelar()'>Cancelar</button>
-          <button type="submit" class="btn btn-success" (click)='registrar()'>Cadastrar</button>
+          <button type="button" class="btn btn-danger me-4" (click)="cancelar()">Cancelar</button>
+          <button type="submit" class="btn btn-success" (click)="registrar()">Cadastrar</button>
         </div>
-
       </div>
     </div>
   </div>
