@@ -65,7 +65,7 @@ export class RegisterComponent {
 
     if (this.form.valid) {
       this.usuario = this.form.value;
-
+      this.usuario.contatos = this.contatos;
 
       this.usuario.enderecos = [
         { ...this.form.value.enderecoEntrega, tipoEndereco: "ENTREGA" },
@@ -78,39 +78,37 @@ export class RegisterComponent {
 
   }
 
-adicionarContato() {
-  const modalRef = this.modalService.open(ContatoComponent, { 
-    windowClass: 'custom-modal-class', // Classe CSS personalizada
-    centered: true // Isso garante que a modal seja centralizada
-  });
+  adicionarContato() {
+    const modalRef = this.modalService.open(ContatoComponent, {
+      windowClass: 'custom-modal-class',
+      centered: true
+    });
 
-  modalRef.result.then((contato) => {
-    console.log("este log" + contato);
-    
-    if (contato) { 
-      this.contatos.push(contato); 
-      this.contatos = [...this.contatos]; 
-    }
-  }).catch((error) => {
-    console.log(error);
-  });
-}
+    modalRef.result.then((contato) => {
+      console.log(contato);
 
-// edit(row: any) {
-//   const modalRef = this.modalService.open(ContactComponent, row);
-//   modalRef.componentInstance.contact = row;
-//   modalRef.result.then((resp) => {
-//       this.company.contact.pop()
-//       this.company.contact.push(resp)
-//       this.cdRef.detectChanges();
-//   }).catch((error) => {
-//       console.log(error);
-//   });
-// }
+      if (contato) {
+        this.contatos.push(contato);
+        this.contatos = [...this.contatos];
+      }
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
 
+  edit(contato: Contato) {
+    const index = this.contatos.indexOf(contato);
+    const modalRef = this.modalService.open(ContatoComponent);
 
-  edit(contact: any) {
-    console.log('Edit contact:', contact);
+    modalRef.componentInstance.contato = contato;
+    modalRef.result.then((resp: Contato) => {
+      if (index > -1) {
+        this.contatos.splice(index, 1);
+        this.contatos.push(resp)
+      }
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   remove(contact: any) {

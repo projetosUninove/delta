@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Contato } from '../../core/types/Contato';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,13 +8,14 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   templateUrl: './contato.component.html',
   styleUrl: './contato.component.css'
 })
-
-
-
 export class ContatoComponent {
 
   @Input()
   contato: Contato;
+
+  @Output()
+  contatoUpdated = new EventEmitter<Contato>();
+
   form!: FormGroup;
 
   constructor(
@@ -26,26 +27,21 @@ export class ContatoComponent {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      nomeCompleto: new FormControl(''),
-      telefone: new FormControl(''),
-      celular: new FormControl(''),
-      email: new FormControl(''),
-      cargo: new FormControl(''),
-      area: new FormControl(''),
+      nomeCompleto: new FormControl(this.contato.nomeCompleto),
+      telefone: new FormControl(this.contato.telefone),
+      celular: new FormControl(this.contato.celular),
+      email: new FormControl(this.contato.email),
+      cargo: new FormControl(this.contato.cargo),
+      area: new FormControl(this.contato.area),
     });
   }
 
-  salvar(){
-
+  salvar() {
     if (this.form.valid) {
       this.contato = this.form.value;
-
-      console.log("Dados modal"+this.contato);
-      this.activeModal.close(this.contato); 
+      this.contatoUpdated.emit(this.contato);
+      this.activeModal.close(this.contato);
     }
-
   }
-
-
 
 }
