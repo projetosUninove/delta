@@ -5,6 +5,8 @@ import { Usuario } from '../../core/types/Usuario';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Contato } from '../../core/types/Contato';
 import { ContatoComponent } from '../contato/contato.component';
+import Swal from 'sweetalert2';
+import { UsuarioService } from '../../core/services/usuario.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +22,8 @@ export class RegisterComponent {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private usuarioService: UsuarioService
   ) {
     this.usuario = new Usuario();
   }
@@ -72,8 +75,25 @@ export class RegisterComponent {
         { ...this.form.value.enderecoFaturamento, tipoEndereco: "FATURAMENTO" }
       ];
 
+      this.usuarioService.cadastrar(this.usuario).subscribe(
+        (resp: any) => {
+          console.log(resp);
+          this.alertSuccess("Usuário cadastrado com sucesso!");
+          this.router.navigate(['/login']);
+        },
+        (error) => {
+          if (error.error && error.error.length > 0) {
+            const firstError = error.error[0];
+            this.alertError('Erro ao cadastrar usuário: ' + firstError.message);
+          } else {
+            this.alertError('Erro ao cadastrar usuário: ' + error.message);
+          }
+        }
+      );
 
       console.log('Dados enviados:', this.usuario);
+    } else {
+      this.alertError('Preencha todos os campos obrigatorios!');
     }
 
   }
@@ -116,6 +136,25 @@ export class RegisterComponent {
     if (index > -1) {
       this.contatos.splice(index, 1);
     }
+  }
+
+  alertSuccess(message: string) {
+    Swal.fire({
+      title: `<h5 style="color:green">${message}</h5>`,
+      icon: 'success',
+      confirmButtonText: 'OK',
+      showConfirmButton: false,
+    });
+  }
+
+  alertError(message: string) {
+    Swal.fire({
+      title: `<h5>${message}</h5>`,
+      icon: 'error',
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'OK',
+      showConfirmButton: false,
+    });
   }
 
 }
