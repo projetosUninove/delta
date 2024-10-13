@@ -35,8 +35,21 @@ export class SignUpComponent implements OnInit {
       codigoContabil: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
-    });
+      confirmPassword: ['', Validators.required],
+      nomeCompleto: ['', Validators.required],
+      tel: ['', Validators.required],
+      cargo: ['', Validators.required],
+      area: ['', Validators.required],
+      cepEmissao: ['', Validators.required],
+      logradouroEmissao: ['', Validators.required],
+      numeroEmissao: ['', Validators.required],
+      complementoEmissao: ['', Validators.required],
+      bairroEmissao: ['', Validators.required],
+      cepEntrega: ['', Validators.required],
+      logradouroEntrega: ['', Validators.required],
+      numeroEntrega: ['', Validators.required],
+      complementoEntrega: ['', Validators.required],
+      bairroEntrega: ['', Validators.required]    });
   }
 
 }
