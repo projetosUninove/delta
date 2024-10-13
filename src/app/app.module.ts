@@ -24,6 +24,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { FornecedoresComponent } from './Pages/fornecedores/fornecedores.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RegisterComponent } from './Pages/register/register.component';
+import { ContatoComponent } from './Pages/contato/contato.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { RegisterComponent } from './Pages/register/register.component';
     CarrinhoComponent,
     ForgotPassComponent,
     FornecedoresComponent,
+    ContatoComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { RegisterComponent } from './Pages/register/register.component';
     FormsModule,
     ReactiveFormsModule,
     MatTabsModule,
+    HttpClientModule,
     NgIconsModule.withIcons({
       ionPersonOutline,
       ionLogoWhatsapp,
