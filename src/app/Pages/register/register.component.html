@@ -1,161 +1,102 @@
-<section class="reg">
-    <div class="regContainer">
-      <div class="regBox">
-        <h2>Cadastro De Usuario</h2>
-        <br />
-        <form action="">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Razão Social</label>
-              <input type="text" id="name" name="name" placeholder="Ex: João da Silva / Empresa LTDA" />
-            </div>
-            <div class="form-group">
-              <label for="name">Nome Fantasia</label>
-              <input type="text" id="name" name="name" placeholder="Ex: João da Silva / Empresa LTDA" />
-            </div>
+<div class="container-fluid">
+  <div class="row d-flex align-items-center">
+      <div class="col-md-12 ">
+          <div class="row d-flex justify-content-center">
+              <form class="col-sm-8 shadow-lg p-3 mt-4 mb-4 bg-body rounded cardLogin">
+                  <h1 class="text-center m-3">Cadastro</h1>
 
-            <div class="form-group">
-              <label for="cnpj">CNPJ</label>
-              <input type="text" id="cnpj" name="cnpj" placeholder="Ex: 12.345.678/0001-99" required />
-            </div>
+                  <div class="form-group">
+                      <label for="razaoSocial">Razão Social*</label>
+                      <input type="text" id="razaoSocial" name="razaoSocial" class="form-control" placeholder="Ex: João da Silva / Empresa LTDA">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="nomeFantasia">Nome Fantasia*</label>
+                      <input type="text" id="nomeFantasia" name="nomeFantasia" class="form-control" placeholder="Ex: João da Silva / Empresa LTDA">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="cnpj">CNPJ*</label>
+                      <input type="text" id="cnpj" name="cnpj" class="form-control" mask="00.000.000/0000-00" placeholder="Ex: 12.345.678/0001-99">
+                  </div>
+
+                  <div class="form-row">
+                      <div class="form-group col-md-6">
+                          <label for="nomeCompleto">Nome Completo</label>
+                          <input type="text" id="nomeCompleto" name="nomeCompleto" class="form-control">
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="tel">Telefone de Contato</label>
+                          <input type="tel" id="tel" name="tel" class="form-control">
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="email">E-mail</label>
+                          <input type="email" id="email" name="email" class="form-control">
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="cargo">Cargo</label>
+                          <input type="text" id="cargo" name="cargo" class="form-control">
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="area">Área</label>
+                          <input type="text" id="area" name="area" class="form-control">
+                      </div>
+                  </div>
+
+                  <h3>Cadastro De Endereço Para Emissão</h3>
+                  <div class="form-row">
+                      <div class="form-group col-md-4">
+                          <label for="cepEmissao">CEP</label>
+                          <input type="number" id="cepEmissao" name="cepEmissao" class="form-control" placeholder="12345-678">
+                      </div>
+                      <div class="form-group col-md-8">
+                          <label for="logradouroEmissao">Logradouro</label>
+                          <input type="text" id="logradouroEmissao" name="logradouroEmissao" class="form-control">
+                      </div>
+                      <div class="form-group col-md-4">
+                          <label for="numero">Número</label>
+                          <input type="number" id="numero" name="numero" class="form-control">
+                      </div>
+                      <div class="form-group col-md-8">
+                          <label for="complemento">Complemento</label>
+                          <input type="text" id="complemento" name="complemento" class="form-control">
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="bairroEmissao">Bairro</label>
+                          <input type="text" id="bairroEmissao" name="bairroEmissao" class="form-control">
+                      </div>
+                  </div>
+
+                  <h3>Cadastro De Endereço Para Entrega</h3>
+                  <div class="form-row">
+                      <div class="form-group col-md-4">
+                          <label for="cepEntrega">CEP</label>
+                          <input type="number" id="cepEntrega" name="cepEntrega" class="form-control" placeholder="12345-678">
+                      </div>
+                      <div class="form-group col-md-8">
+                          <label for="logradouroEntrega">Logradouro</label>
+                          <input type="text" id="logradouroEntrega" name="logradouroEntrega" class="form-control">
+                      </div>
+                      <div class="form-group col-md-4">
+                          <label for="numero">Número</label>
+                          <input type="number" id="numero" name="numero" class="form-control">
+                      </div>
+                      <div class="form-group col-md-8">
+                          <label for="complemento">Complemento</label>
+                          <input type="text" id="complemento" name="complemento" class="form-control">
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="bairroEntrega">Bairro</label>
+                          <input type="text" id="bairroEntrega" name="bairroEntrega" class="form-control">
+                      </div>
+                  </div>
+
+                  <div class="d-flex justify-content-center mt-3">
+                      <button type="submit" class="btn btn-danger me-4" (click)="cancel()">Cancelar</button>
+                      <button type="submit" class="btn btn-success" (click)="signUp()">Cadastrar</button>
+                  </div>
+              </form>
           </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="estadual"> Inscrição Estadual</label>
-              <input type="number" id="estadual" name="estadual" placeholder="123.456.789.123">
-            </div>
-
-            <div class="form-group">
-             <label for="ccm"> Inscrição CCM</label>
-             <input type="number" id="ccm" name="ccm" placeholder="">
-            </div>
-
-            <div class="form-group">
-              <label for="codigo"> Codigo Contabil </label>
-              <input type="number" id="codigo" name="codigo" placeholder="1234"> 
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="Ex: exemplo@dominio.com" />
-            </div>
-
-            <div class="form-group">
-              <label for="password">Senha</label>
-              <input id="password" name="password" type="password" minlength="6" required
-              placeholder="Digite uma senha" />
-            </div>
-
-            <div class="form-group">
-              <label for="confirmPassword">Confirme sua Senha</label>
-              <input id="confirmPassword" name="confirmPassword" type="password" minlength="6" required
-                placeholder="Confirme sua senha" />
-                
-            </div>
-            
-          </div>
-
-          <div class="regContainer">
-            <h2>Contato</h2>
-            <div class="regbox">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="name">Nome Completo</label>
-                  <input type="text" name="name" id="name">
-                </div>
-                <div class="form-group">
-                  <label for="tel"> Telefone de Contato</label>
-                  <input type="tel" name="tel" id="tel">
-                </div>
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" name="email" id="email" placeholder="exemplo.exemplo@gmail.com">
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="cargo">Cargo</label>
-                  <input type="text" name="cargo" id="cargo">
-                </div>
-                <div class="form-group">
-                  <label for="area">Area</label>
-                  <input type="text" name="area" id="area">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="regContainer">
-            <h2>Cadastro De Endereço Para Emissão</h2>
-            <div class="regbox">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="cepEmissao">CEP</label>
-                  <input type="number" name="cep" id="cepEmissao" placeholder="12345-678">
-                </div>
-              
-                <div class="form-group">
-                  <label for="logradouroEmissao">Logradouro</label>
-                  <input type="text" name="logradouro" id="logradouroEmissao" placeholder="rua catapimbas">
-                </div>
-      
-                <div class="form-group">
-                  <label for="numero">Numero</label>
-                  <input type="number" id="numero" name="numero" placeholder="452">
-                </div>
-              </div>
-      
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="complemento">Complemento</label>
-                  <input type="text" id="complemento" name="complemento" placeholder="travessa com ...">
-                </div>
-      
-                <div class="form-group">
-                  <label for="bairroEmissao">Bairro</label>
-                  <input type="text" id="bairroEmissao" name="bairro" placeholder="jardim pipipi">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <section class="regContainer">
-            <h2>Cadastro De Endereço Para Entrega</h2>
-            <div class="regbox">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="cepEntrega">CEP</label>
-                  <input type="number" name="cep" id="cepEntrega" placeholder="12345-678">
-                </div>
-              
-                <div class="form-group">
-                  <label for="logradouroEntrega">Logradouro</label>
-                  <input type="text" name="logradouro" id="logradouroEntrega" placeholder="rua catapimbas">
-                </div>
-      
-                <div class="form-group">
-                  <label for="numero">Numero</label>
-                  <input type="number" id="numero" name="numero" placeholder="452">
-                </div>
-              </div>
-      
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="complemento">Complemento</label>
-                  <input type="text" id="complemento" name="complemento" placeholder="travessa com ...">
-                </div>
-      
-                <div class="form-group">
-                  <label for="bairroEntrega">Bairro</label>
-                  <input type="text" id="bairroEntrega" name="bairro" placeholder="jardim pipipi">
-                </div>
-              </div>
-
-              <div class="inputBox">
-                <input id="login" type="submit" value="Entrar" />
-              </div>
-    
-            </div>
-        </section>
+      </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { UserRequestDto } from 'src/app/core/types/user.ts';
+import { UserRequestDto } from '../../types/user';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2';
@@ -38,6 +38,4 @@ export class SignUpComponent implements OnInit {
       confirmPassword: ['', Validators.required]
     });
   }
-
 }
-
