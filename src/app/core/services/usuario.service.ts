@@ -19,7 +19,7 @@ export class UsuarioService {
   }
 
   cadastrar(usuario: Usuario): Observable<any> {
-    return this.http.post<any>(`${this.urlBase}/usuario`, usuario)
+    return this.http.post<any>(`${this.urlBase}/usuario`, usuario, { headers: this.headers })
   }
 
 }
