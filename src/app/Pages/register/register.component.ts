@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Usuario } from '../../core/types/Usuario';
-import { Endereco } from '../../core/types/Endereco';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Contato } from '../../core/types/Contato';
+import { ContatoComponent } from '../contato/contato.component';
 
 @Component({
   selector: 'app-register',
@@ -13,10 +15,12 @@ export class RegisterComponent {
 
   form!: FormGroup;
   usuario: Usuario;
+  contatos: Contato[] = [];
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
+    private modalService: NgbModal
   ) {
     this.usuario = new Usuario();
   }
@@ -48,7 +52,6 @@ export class RegisterComponent {
     });
   }
 
-
   confirmeSenha(event: any) {
 
   }
@@ -58,25 +61,63 @@ export class RegisterComponent {
   }
 
   registrar() {
-
-    console.log(this.form.value);
     console.log(this.form.valid);
-    
-    
+
     if (this.form.valid) {
       this.usuario = this.form.value;
-      
+
 
       this.usuario.enderecos = [
-        {...this.form.value.enderecoEntrega, tipoEndereco: "ENTREGA"},
-        {...this.form.value.enderecoFaturamento, tipoEndereco: "FATURAMENTO"}
+        { ...this.form.value.enderecoEntrega, tipoEndereco: "ENTREGA" },
+        { ...this.form.value.enderecoFaturamento, tipoEndereco: "FATURAMENTO" }
       ];
-      
-  
-      console.log('Dados enviados:', this.usuario);  // Aqui você envia o payload ao backend
+
+
+      console.log('Dados enviados:', this.usuario);
     }
 
   }
 
+adicionarContato() {
+  const modalRef = this.modalService.open(ContatoComponent, { 
+    windowClass: 'custom-modal-class', // Classe CSS personalizada
+    centered: true // Isso garante que a modal seja centralizada
+  });
+
+  modalRef.result.then((contato) => {
+    console.log("este log" + contato);
+    
+    if (contato) { 
+      this.contatos.push(contato); 
+      this.contatos = [...this.contatos]; 
+    }
+  }).catch((error) => {
+    console.log(error);
+  });
+}
+
+// edit(row: any) {
+//   const modalRef = this.modalService.open(ContactComponent, row);
+//   modalRef.componentInstance.contact = row;
+//   modalRef.result.then((resp) => {
+//       this.company.contact.pop()
+//       this.company.contact.push(resp)
+//       this.cdRef.detectChanges();
+//   }).catch((error) => {
+//       console.log(error);
+//   });
+// }
+
+
+  edit(contact: any) {
+    console.log('Edit contact:', contact);
+  }
+
+  remove(contact: any) {
+    const index = this.contatos.indexOf(contact);
+    if (index > -1) {
+      this.contatos.splice(index, 1);
+    }
+  }
 
 }

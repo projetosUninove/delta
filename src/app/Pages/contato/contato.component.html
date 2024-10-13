@@ -1,0 +1,78 @@
+<div class="container-fluid custom-modal-class">
+    <div class="row d-flex align-items-center">
+        <div class="col-md-12">
+            <div class="row d-flex justify-content-center">
+                <form [formGroup]="form" class="col-11">
+
+                    <h4 class="mt-4">Cadastro</h4>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="nomeCompleto" class="mb-1 mt-3">nome completo*</label>
+                            <input formControlName="nomeCompleto" class="form-control" type="text" id="nomeCompleto"
+                                placeholder="Ex: João Silva">
+                            <small class="form-text text-danger"
+                                *ngIf="form.get('nomeCompleto')?.invalid && (form.get('nomeCompleto')?.dirty || form.get('nomeCompleto')?.touched)">Campo
+                                obrigatório!</small>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="telefone" class="mb-1 mt-3">Telefone*</label>
+                            <input formControlName="telefone" class="form-control" type="text" id="telefone"
+                                placeholder="Ex: (11) 12345-6789">
+                            <small class="form-text text-danger"
+                                *ngIf="form.get('telefone')?.invalid && (form.get('telefone')?.dirty || form.get('telefone')?.touched)">Campo
+                                obrigatório!</small>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="celular" class="mb-1 mt-3">Celular</label>
+                            <input formControlName="celular" class="form-control" type="text"
+                                id="celular" placeholder="Ex: (11) 12345-6789">
+                            <small class="form-text text-danger"
+                                *ngIf="form.get('celular')?.invalid && (form.get('celular')?.dirty || form.get('celular')?.touched)">Campo
+                                obrigatório!</small>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="email" class="mb-1 mt-3">E-mail</label>
+                            <input formControlName="email" class="form-control" type="text" id="email"
+                                placeholder="Ex: exemplo@dominio.com">
+                            <small class="form-text text-danger"
+                                *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">Campo
+                                obrigatório!</small>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="cargo" class="mb-1 mt-3">Cargo*</label>
+                            <input formControlName="cargo" class="form-control" type="text"
+                                id="cargo" placeholder="Ex: Analista">
+                            <small class="form-text text-danger"
+                                *ngIf="form.get('cargo')?.invalid && (form.get('cargo')?.dirty || form.get('cargo')?.touched)">Campo
+                                obrigatório!</small>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="area" class="mb-1 mt-3">Área*</label>
+                            <input formControlName="area" class="form-control" type="text" id="area"
+                                placeholder="Ex: Compras">
+                            <small class="form-text text-danger"
+                                *ngIf="form.get('area')?.invalid && (form.get('area')?.dirty || form.get('area')?.touched)">Campo
+                                obrigatório!</small>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end mt-3">
+                        <button type="submit" class="btn btn-secondary me-4"
+                            (click)="activeModal.dismiss('Cross click')">Fechar</button>
+                        <button type="submit" class="btn btn-primary" (click)="salvar()">Salvar</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>

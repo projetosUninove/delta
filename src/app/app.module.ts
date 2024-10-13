@@ -24,6 +24,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { FornecedoresComponent } from './Pages/fornecedores/fornecedores.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RegisterComponent } from './Pages/register/register.component';
+import { ContatoComponent } from './Pages/contato/contato.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { RegisterComponent } from './Pages/register/register.component';
     CarrinhoComponent,
     ForgotPassComponent,
     FornecedoresComponent,
+    ContatoComponent,
   ],
   imports: [
     BrowserModule,

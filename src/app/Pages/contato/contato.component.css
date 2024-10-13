@@ -1,0 +1,20 @@
+.custom-modal-class {
+    max-height: 80vh;
+    /* Altura máxima */
+    height: auto;
+    /* Altura automática */
+    min-height: 400px;
+    /* Altura mínima */
+    overflow-y: auto;
+    /* Rolagem vertical se necessário */
+}
+
+.custom-modal-class .modal-content {
+    width: 100%;
+    /* Largura total */
+    max-width: 800px;
+    /* Largura máxima */
+    max-width: auto;
+    padding: 40px;
+    /* Aumente o padding */
+}
