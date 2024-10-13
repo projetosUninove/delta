@@ -1,0 +1,38 @@
+.footer-container {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.footer-container > h3 {
+  font-size: x-large;
+  color: rgb(93, 184, 37);
+  margin: 25px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin: 0 10px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  color: rgb(93, 184, 37);
+  border-radius: 50%;
+
+}
+
+footer p.copyright {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #ffffff;
+}

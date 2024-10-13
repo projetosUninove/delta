@@ -1,0 +1,32 @@
+.testimonials {
+    padding: 5rem;
+  }
+  
+  .testimonials-name {
+    color: rgb(0, 0, 0)
+  ;
+  }
+  
+  .testimonial-text {
+    color: rgb(0, 0, 0)
+  ;
+  }
+  
+  .testimonials-card {
+    width: 50%;
+  }
+
+  .container,
+  .container2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    color: rgb(93, 184, 37)
+  ;
+    margin: 80px auto 0;
+  }

@@ -1,0 +1,26 @@
+<div class="carrinho">
+    <h1 class="tituloCarrinho">Carrinho</h1>
+    <br />
+    <table>
+      <tr>
+        <th>Produto</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+      </tr>
+      <tr *ngFor="let produto of produtos">
+        <td>{{ produto.nome }}</td>
+        <td>{{ produto.preco | currency }}</td>
+        <td>{{ produto.quantidade }}</td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">Total de Preço:</td>
+        <td>{{ totalPreco | currency }}</td>
+      </tr>
+    </table>
+    <br />
+    <div class="btnContainer">
+      <button class="limparCarrinhoBtn" (click)="limparCarrinho()">Limpar Carrinho</button>
+      <button class="finalizarCompra" (click)="finalizarCompra()">Finalizar Compra</button>
+    </div>
+  </div>
+  

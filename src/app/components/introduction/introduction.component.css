@@ -1,0 +1,104 @@
+  .introduction {
+    text-align: center;
+    margin: 15px;
+  }
+  
+  .introduction > h1 {
+    color: rgb(93, 184, 37)
+  ;
+    margin: 30px;
+  }
+  
+  .introduction > p {
+    color: rgb(0, 0, 0);
+  }
+  
+  span {
+    color: rgb(93, 184, 37)
+  ;
+  }
+  
+  .container,
+  .container2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0)
+  ;
+    margin: 80px auto 0;
+  }
+  
+  .img-aside img,
+  .img-aside2 img {
+    height: 380px;
+    width: 350px;
+    border-radius: 10px;
+    margin: 10px;
+  }
+  .content > h2 {
+    color: rgb(93, 184, 37)
+  ;
+    text-align: center;
+    font-size: xx-large;
+    margin-bottom: 20px;
+  }
+  
+  .content > p {
+    margin-left: 25px;
+    color: #000000;
+  }
+
+  @media (max-width: 768px) {
+    .carousel-inner > .carousel-item > img {
+      width: 100%; /* Ajusta a imagem do carousel para ocupar 100% da largura */
+      height: auto; /* Ajusta a altura automaticamente */
+    }
+  
+    .container,
+    .container2 {
+      flex-direction: column;
+      padding: 10px;
+      margin-top: 20px; /* Diminui a margem superior para dispositivos móveis */
+    }
+  
+    .container .content,
+    .container2 .content2 {
+      margin-right: 0;
+      margin-bottom: 20px; /* Adiciona margem inferior para separar seções */
+    }
+  
+    .img-aside,
+    .img-aside2 {
+      flex: 1 1 100%;
+      text-align: center;
+    }
+  
+    .testimonials {
+      padding: 2rem; /* Diminui o padding das testemunhas para dispositivos móveis */
+    }
+  
+    .testimonials-card {
+      width: 100%; /* Faz com que o cartão de testemunhos ocupe toda a largura disponível */
+    }
+  
+    .container2 {
+      flex-direction: column;
+      margin-top: 20px;
+    }
+  
+    .img-aside2 {
+      order: 2; /* Move o aside para o final */
+      text-align: center;
+      margin-bottom: 20px; /* Espaço entre o aside e a section */
+    }
+  
+    .content2 {
+      order: 1; /* Move a section para o início */
+      margin-right: 0;
+    }
+  }

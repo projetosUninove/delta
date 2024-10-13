@@ -1,0 +1,90 @@
+.containerCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  gap: -10px;
+}
+
+.card {
+  width: 15.7rem;
+  height: 540px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  margin: 30px;
+  border-radius: 17px;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
+}
+
+.card-img-top {
+  border-radius: 15px 15px 0 0;
+  height: 340px;
+  width: 250px;
+}
+
+
+.product-box {
+  background-color: #292828;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+}
+
+.product-info {
+  flex-grow: 1;
+  padding: 5px;
+}
+
+.product-description {
+  margin-bottom: 20px;
+}
+
+.product-price {
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+  margin-bottom: 20px;
+}
+
+.buy-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: rgb(0, 0, 0);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.buy-button:last-child {
+  margin-right: 0;
+}
+
+.buy-button:hover {
+  background-color: rgb(93, 184, 37);
+  color: #fffdfd;
+}
+
+.buy-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: rgb(93, 184, 37);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.buy-button:last-child {
+  margin-right: 0;
+}
+
+.buy-button:hover {
+  background-color: #ffffffb4;
+  color: #292828;
+}

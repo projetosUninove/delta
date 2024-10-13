@@ -1,0 +1,85 @@
+.navbar {
+  background-color: #000000;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.navbar .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar .logo img {
+    width: 150px;
+    height: 70px;
+  }
+
+.navbar .nav-links {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar .nav-links li a {
+    color: rgb(93, 184, 37);
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+  }
+  
+  .navbar .nav-links li a:hover {
+    border-bottom: 1px solid rgb(93, 184, 37);
+  }
+  
+  .navbar .nav-links a.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+
+.linha {
+  border: 1px solid rgba(221, 221, 221, 0.2);
+  height: 50px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.menuContainer {
+  display: flex;
+  align-items: center;
+}
+
+.menuLogin {
+  display: flex;
+  flex-direction: column;
+}
+
+.iconUser {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  color: white;
+}
+
+.menuMsg {
+  font-size: 13px;
+  color: rgb(93, 184, 37);
+}
+
+.ouText {
+  font-size: 10px;
+  color: white;
+}
+
+.menuLink {
+    font-size: 10px;
+    text-decoration: none;
+    color: white;
+  }
+  
+  .menuLink:hover {
+    color: rgb(93, 184, 37)
+  ;
+  }

@@ -1,0 +1,126 @@
+/* Estilos do Formulário */
+input[type=number]::-webkit-inner-spin-button { 
+  -webkit-appearance: none;
+  
+}
+input[type=number] { 
+ -moz-appearance: textfield;
+ appearance: textfield;
+
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 35px;
+}
+
+.form-row > h2{
+  margin-bottom: 30px;
+  text-align: left;
+  width: 100%;
+  color: black;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: calc(33.333% - 20px); /* 3 colunas com espaço entre elas */
+  margin-bottom: 20px;
+}
+
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+}
+
+input[id="enviar"]{
+
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: rgb(93, 184, 37);
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: -50px;
+  text-decoration: none;
+}
+
+input[id="enviar"]:hover{
+
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  color : rgb(0, 0, 0)
+}
+
+.form-group input ,
+.form-group select {
+  width: 100%;;
+  border: 1px solid rgba(0, 0, 0, 0.247);
+  border-radius: 4px;
+  font-size: 1em;
+  height: 40px;
+  text-align: center;
+  align-items: center;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #ffffff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+#formContainer .generated-form {
+  background: #f1f1f1;
+  padding: 1em;
+  border-radius: 4px;
+  position: relative;
+}
+
+.regBox {
+  position: relative;
+  width: 80%;
+  margin: 0 auto 10px;
+  text-align: center;
+  margin-top: 50px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+
+}
+
+.regBox > h1 {
+  color: rgb(150, 150, 150);
+  font-weight: 500;
+}
+
+input[id="login"]  {
+  padding: 10px 20px;
+  font-size: 15px;
+  background-color: rgb(93, 184, 37) !important;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 15px;
+  align-items: center;
+  text-decoration: none;
+}
+
+input[id="login"]:hover {
+  color: #fff;
+}

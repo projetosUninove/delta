@@ -1,0 +1,59 @@
+.carrinho {
+  max-width: 550px;
+  margin: auto;
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  color: rgb(93, 184, 37);
+  text-align: center;
+}
+
+.limparCarrinhoBtn {
+  background-color: #ff0000;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+.tituloCarrinho {
+  align-items: center;
+  text-align: center;
+  color: rgb(93, 184, 37);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  background-color: white;
+  color: black;
+}
+
+th {
+  background-color: black;
+  color: rgb(93, 184, 37);
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.finalizarCompra {
+  background-color: green;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.btnContainer{
+    display: flex;
+}

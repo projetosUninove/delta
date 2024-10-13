@@ -1,0 +1,28 @@
+
+    <div class="loginContainer">
+        
+      <div class="loginBox">
+        <h1>Esqueceu a senha?</h1>
+        <br />
+        <form (ngSubmit)="submitResetPassword($event)" #resetPassword="ngForm">
+          <p class="forgotEmail">Coloque seu email de cadastro</p>
+          <div class="inputBox">
+            <label for="email">Email</label><br />
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="inputBox">
+            <input
+              id="login"
+              type="submit"
+              value="Enviar link para confirmação de email"
+            />
+          </div>
+          <div class="linhaReta"></div>
+          <div class="inputCadastrar">
+            <a href="login" class="cadastrar">Faça seu login</a>
+            <a href="register" class="cadastrar">Cadastre-se</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
