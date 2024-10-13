@@ -17,13 +17,13 @@ import { ProductsComponent } from './Pages/products/products.component';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './Pages/login/login.component';
-import { RegisterComponent } from './Pages/register/register.component';
 import { CarrinhoComponent } from './Pages/carrinho/carrinho.component';
 import { ForgotPassComponent } from './Pages/forgot-pass/forgot-pass.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { FornecedoresComponent } from './Pages/fornecedores/fornecedores.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { RegisterComponent } from './Pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +45,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     MatTabsModule,
     NgIconsModule.withIcons({
       ionPersonOutline,
