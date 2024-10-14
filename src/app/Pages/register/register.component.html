@@ -39,8 +39,8 @@
             <div class="row">
               <div class="form-group col-md-4">
                 <label for="inscricaoEstadual" class="mb-1 mt-3">Inscrição Estadual</label>
-                <input formControlName="inscricaoEstadual" class="form-control" type="text" mask="000.000.000.000" id="inscricaoEstadual"
-                  placeholder="123.456.789.112">
+                <input formControlName="inscricaoEstadual" class="form-control" type="text" mask="000.000.000.000"
+                  id="inscricaoEstadual" placeholder="123.456.789.112">
                 <small class="form-text text-danger"
                   *ngIf="form.get('inscricaoEstadual')?.invalid && (form.get('inscricaoEstadual')?.dirty || form.get('inscricaoEstadual')?.touched)">Campo
                   obrigatório!</small>
@@ -48,8 +48,8 @@
 
               <div class="form-group col-md-4">
                 <label for="inscricaoCcm" class="mb-1 mt-3">Inscrição CCM</label>
-                <input formControlName="inscricaoCcm" mask="00000000-0"  class="form-control" type="text" id="inscricaoCcm"
-                  placeholder="12345678-9">
+                <input formControlName="inscricaoCcm" mask="00000000-0" class="form-control" type="text"
+                  id="inscricaoCcm" placeholder="12345678-9">
                 <small class="form-text text-danger"
                   *ngIf="form.get('inscricaoCcm')?.invalid && (form.get('inscricaoCcm')?.dirty || form.get('inscricaoCcm')?.touched)">Campo
                   obrigatório!</small>
@@ -77,8 +77,8 @@
 
               <div class="form-group col-md-4">
                 <label for="senha" class="mb-1 mt-3">Senha*</label>
-                <input formControlName="senha" class="form-control" type="password"
-                  id="senha" placeholder="Digite sua senha">
+                <input formControlName="senha" class="form-control" type="password" id="senha"
+                  placeholder="Digite sua senha">
                 <small class="form-text text-danger"
                   *ngIf="form.get('senha')?.invalid && (form.get('senha')?.dirty || form.get('senha')?.touched)">Campo
                   obrigatório!</small>
@@ -101,17 +101,18 @@
               <div class="row">
                 <div class="form-group col-md-4">
                   <label for="cepEntrega">CEP*</label>
-                  <input formControlName="cep" mask="00000-000" class="form-control" id="cepEntrega" placeholder="CEP">
+                  <input formControlName="cep" (input)="buscarCepEntrega($event)" mask="00000-000" class="form-control"
+                    id="cepEntrega" placeholder="CEP">
                   <small class="form-text text-danger"
-                  *ngIf="form.get('cep')?.invalid && (form.get('cep')?.dirty || form.get('cep')?.touched)">Campo
-                  obrigatório!</small>
+                    *ngIf="form.get('cep')?.invalid && (form.get('cep')?.dirty || form.get('cep')?.touched)">Campo
+                    obrigatório!</small>
                 </div>
 
                 <div class="form-group col-md-4">
                   <label for="logradouroEntrega">Logradouro*</label>
                   <input formControlName="logradouro" class="form-control" id="logradouroEntrega"
                     placeholder="Ex: Rua, Avenida">
-                    <small class="form-text text-danger"
+                  <small class="form-text text-danger"
                     *ngIf="form.get('logradouro')?.invalid && (form.get('logradouro')?.dirty || form.get('logradouro')?.touched)">Campo
                     obrigatório!</small>
                 </div>
@@ -120,7 +121,7 @@
                   <label for="numeroEntrega">Número*</label>
                   <input formControlName="numero" class="form-control" id="numeroEntrega"
                     placeholder="Número da residência">
-                    <small class="form-text text-danger"
+                  <small class="form-text text-danger"
                     *ngIf="form.get('numero')?.invalid && (form.get('numero')?.dirty || form.get('numero')?.touched)">Campo
                     obrigatório!</small>
                 </div>
@@ -131,24 +132,24 @@
                   <label for="bairroEntrega">Bairro*</label>
                   <input formControlName="bairro" class="form-control" id="bairroEntrega" placeholder="Bairro">
                   <small class="form-text text-danger"
-                  *ngIf="form.get('bairro')?.invalid && (form.get('bairro')?.dirty || form.get('bairro')?.touched)">Campo
-                  obrigatório!</small>
+                    *ngIf="form.get('bairro')?.invalid && (form.get('bairro')?.dirty || form.get('bairro')?.touched)">Campo
+                    obrigatório!</small>
                 </div>
 
                 <div class="form-group col-md-4">
                   <label for="cidadeEntrega">Cidade*</label>
                   <input formControlName="cidade" class="form-control" id="cidadeEntrega" placeholder="Cidade">
                   <small class="form-text text-danger"
-                  *ngIf="form.get('cidade')?.invalid && (form.get('cidade')?.dirty || form.get('cidade')?.touched)">Campo
-                  obrigatório!</small>
+                    *ngIf="form.get('cidade')?.invalid && (form.get('cidade')?.dirty || form.get('cidade')?.touched)">Campo
+                    obrigatório!</small>
                 </div>
 
                 <div class="form-group col-md-4">
                   <label for="estadoEntrega">Estado*</label>
                   <input formControlName="estado" class="form-control" id="estadoEntrega" placeholder="Estado">
                   <small class="form-text text-danger"
-                  *ngIf="form.get('estado')?.invalid && (form.get('estado')?.dirty || form.get('estado')?.touched)">Campo
-                  obrigatório!</small>
+                    *ngIf="form.get('estado')?.invalid && (form.get('estado')?.dirty || form.get('estado')?.touched)">Campo
+                    obrigatório!</small>
                 </div>
               </div>
             </div>
@@ -160,17 +161,18 @@
               <div class="row">
                 <div class="form-group col-md-4">
                   <label for="cepFaturamento">CEP*</label>
-                  <input formControlName="cep" mask="00000-000" class="form-control" id="cepFaturamento" placeholder="CEP">
+                  <input formControlName="cep" (input)="buscarCepFaturamento($event)" mask="00000-000" class="form-control" id="cepFaturamento"
+                    placeholder="CEP">
                   <small class="form-text text-danger"
-                  *ngIf="form.get('cep')?.invalid && (form.get('cep')?.dirty || form.get('cep')?.touched)">Campo
-                  obrigatório!</small>
+                    *ngIf="form.get('cep')?.invalid && (form.get('cep')?.dirty || form.get('cep')?.touched)">Campo
+                    obrigatório!</small>
                 </div>
 
                 <div class="form-group col-md-4">
                   <label for="logradouroFaturamento">Logradouro*</label>
                   <input formControlName="logradouro" class="form-control" id="logradouroFaturamento"
                     placeholder="Ex: Rua, Avenida">
-                    <small class="form-text text-danger"
+                  <small class="form-text text-danger"
                     *ngIf="form.get('logradouro')?.invalid && (form.get('logradouro')?.dirty || form.get('logradouro')?.touched)">Campo
                     obrigatório!</small>
                 </div>
@@ -179,7 +181,7 @@
                   <label for="numeroFaturamento">Número*</label>
                   <input formControlName="numero" class="form-control" id="numeroFaturamento"
                     placeholder="Número da residência">
-                    <small class="form-text text-danger"
+                  <small class="form-text text-danger"
                     *ngIf="form.get('numero')?.invalid && (form.get('numero')?.dirty || form.get('numero')?.touched)">Campo
                     obrigatório!</small>
                 </div>
@@ -190,24 +192,24 @@
                   <label for="bairroFaturamento">Bairro*</label>
                   <input formControlName="bairro" class="form-control" id="bairroFaturamento" placeholder="Bairro">
                   <small class="form-text text-danger"
-                  *ngIf="form.get('bairro')?.invalid && (form.get('bairro')?.dirty || form.get('bairro')?.touched)">Campo
-                  obrigatório!</small>
+                    *ngIf="form.get('bairro')?.invalid && (form.get('bairro')?.dirty || form.get('bairro')?.touched)">Campo
+                    obrigatório!</small>
                 </div>
 
                 <div class="form-group col-md-4">
                   <label for="cidadeFaturamento">Cidade*</label>
                   <input formControlName="cidade" class="form-control" id="cidadeFaturamento" placeholder="Cidade">
                   <small class="form-text text-danger"
-                  *ngIf="form.get('cidade')?.invalid && (form.get('cidade')?.dirty || form.get('cidade')?.touched)">Campo
-                  obrigatório!</small>
+                    *ngIf="form.get('cidade')?.invalid && (form.get('cidade')?.dirty || form.get('cidade')?.touched)">Campo
+                    obrigatório!</small>
                 </div>
 
                 <div class="form-group col-md-4">
                   <label for="estadoFaturamento">Estado*</label>
                   <input formControlName="estado" class="form-control" id="estadoFaturamento" placeholder="Estado">
                   <small class="form-text text-danger"
-                  *ngIf="form.get('estado')?.invalid && (form.get('estado')?.dirty || form.get('estado')?.touched)">Campo
-                  obrigatório!</small>
+                    *ngIf="form.get('estado')?.invalid && (form.get('estado')?.dirty || form.get('estado')?.touched)">Campo
+                    obrigatório!</small>
                 </div>
               </div>
             </div>
@@ -216,7 +218,8 @@
           <div class="col-12 shadow-lg p-3 mt-4 mb-4 bg-body rounded cardLogin">
             <div class="d-flex justify-content-between mb-3">
               <h4>Contatos</h4>
-              <button type="button" class="btn btn-color" (click)="adicionarContato()">Adicionar Contato<i class="ft-plus position-right"></i></button>
+              <button type="button" class="btn btn-color" (click)="adicionarContato()">Adicionar Contato<i
+                  class="ft-plus position-right"></i></button>
             </div>
             <div formGroupName="enderecoFaturamento" class="col-md-12">
 

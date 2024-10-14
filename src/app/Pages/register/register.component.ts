@@ -7,6 +7,7 @@ import { Contato } from '../../core/types/Contato';
 import { ContatoComponent } from '../contato/contato.component';
 import Swal from 'sweetalert2';
 import { UsuarioService } from '../../core/services/usuario.service';
+import { ViacepService } from '../../core/services/viacep.service';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,8 @@ export class RegisterComponent {
     private router: Router,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private viaCep: ViacepService,
   ) {
     this.usuario = new Usuario();
   }
@@ -62,7 +64,7 @@ export class RegisterComponent {
   registrar() {
     if (this.form.valid) {
 
-      if (this.form.value.senha != this.form.value.confirmeSenha ) {
+      if (this.form.value.senha != this.form.value.confirmeSenha) {
         this.alertError('A senhas devem ser iguais!');
       } else {
 
@@ -91,6 +93,42 @@ export class RegisterComponent {
       }
     } else {
       this.alertError('Preencha todos os campos obrigatorios!');
+    }
+  }
+
+  buscarCep(cep: string, formGroup: FormGroup) {
+
+    if (cep?.length === 9) {
+      this.viaCep.buscarCep(cep).subscribe(
+        (resp: any) => {
+          if (resp) {
+            formGroup.patchValue({
+              logradouro: resp.logradouro,
+              bairro: resp.bairro,
+              cidade: resp.localidade,
+              estado: resp.uf,
+              cep: resp.cep
+            });
+          }
+        },
+        (error) => {
+          this.alertError("CEP inválido");
+        }
+      );
+    }
+  }
+
+  buscarCepEntrega(event: any) {
+    let cep = event.target.value
+    if (cep) {
+      this.buscarCep(cep, this.form.get('enderecoEntrega') as FormGroup);
+    }
+  }
+
+  buscarCepFaturamento(event: any) {
+    let cep = event.target.value
+    if (cep) {
+      this.buscarCep(cep, this.form.get('enderecoFaturamento') as FormGroup);
     }
   }
 
