@@ -1,54 +1,27 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Usuario } from '../../core/types/Usuario';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Contato } from '../../core/types/Contato';
+import { ContatoComponent } from '../contato/contato.component';
 import Swal from 'sweetalert2';
+import { UsuarioService } from '../../core/services/usuario.service';
 
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+
+@Injectable({
+  providedIn: 'root'
 })
-export class LoginComponent {
-  submitForm(event: Event) {
-    event.preventDefault();
-    const emailInput = (document.getElementById('email') as HTMLInputElement).value;
-    const passwordInput = (document.getElementById('password') as HTMLInputElement).value;
+export class UsuarioService {
 
-    const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
+  private apiUrl = '/login';
+  private urlBase: string = environment.baseUrl;
+  private headers: HttpHeaders;
 
-    if (!emailInput) {
-      Swal.fire({
-        title: 'Erro',
-        text: 'Por Favor, insira um email.',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-      });
-    }else if(!emailRegex.test(emailInput)){
-      Swal.fire({
-        title: 'Erro',
-        text: 'Por Favor, insira um email válido.',
-        icon: 'error',
-        timer: 2000,
-      });
-    }else if (!passwordInput) {
-      Swal.fire({
-        title: 'Erro',
-        text: 'Por Favor, insira uma senha.',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-      })
-    }else if(passwordInput.length < 6){
-      Swal.fire({
-        title: 'Erro',
-        text: 'Por Favor, insira uma senha com no mínimo 6 caracteres.',
-        icon: 'error',
-        timer: 2000,
-      });
-    } else{
-      Swal.fire({
-        title: 'Sucesso',
-        text: 'Login efetuado com sucesso!',
-        icon: 'success',
-        timer: 2000,
-      })
-    }
+  constructor(private http: HttpClient){}
+
+  login(email : string, senha:string): observable<any>{
+
+    const body = {email, senha};
+    return this.http.post(this./this.apiUrl, body);
   }
-}
