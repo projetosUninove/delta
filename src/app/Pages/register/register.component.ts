@@ -7,6 +7,7 @@ import { Contato } from '../../core/types/Contato';
 import { ContatoComponent } from '../contato/contato.component';
 import Swal from 'sweetalert2';
 import { UsuarioService } from '../../core/services/usuario.service';
+import { ViacepService } from '../../core/services/viacep.service';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,8 @@ export class RegisterComponent {
     private router: Router,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private viaCep: ViacepService,
   ) {
     this.usuario = new Usuario();
   }
@@ -55,47 +57,79 @@ export class RegisterComponent {
     });
   }
 
-  confirmeSenha(event: any) {
-
-  }
-
   cancelar() {
-
+    this.router.navigate(['/login']);
   }
 
   registrar() {
-    console.log(this.form.valid);
-
     if (this.form.valid) {
-      this.usuario = this.form.value;
-      this.usuario.contatos = this.contatos;
 
-      this.usuario.enderecos = [
-        { ...this.form.value.enderecoEntrega, tipoEndereco: "ENTREGA" },
-        { ...this.form.value.enderecoFaturamento, tipoEndereco: "FATURAMENTO" }
-      ];
+      if (this.form.value.senha != this.form.value.confirmeSenha) {
+        this.alertError('A senhas devem ser iguais!');
+      } else {
 
-      this.usuarioService.cadastrar(this.usuario).subscribe(
-        (resp: any) => {
-          console.log(resp);
-          this.alertSuccess("Usuário cadastrado com sucesso!");
-          this.router.navigate(['/login']);
-        },
-        (error) => {
-          if (error.error && error.error.length > 0) {
-            const firstError = error.error[0];
-            this.alertError('Erro ao cadastrar usuário: ' + firstError.message);
-          } else {
-            this.alertError('Erro ao cadastrar usuário: ' + error.message);
+        this.usuario = this.form.value;
+        this.usuario.contatos = this.contatos;
+
+        this.usuario.enderecos = [
+          { ...this.form.value.enderecoEntrega, tipoEndereco: "ENTREGA" },
+          { ...this.form.value.enderecoFaturamento, tipoEndereco: "FATURAMENTO" }
+        ];
+
+        this.usuarioService.cadastrar(this.usuario).subscribe(
+          (resp: any) => {
+            this.alertSuccess("Usuário cadastrado com sucesso!");
+            this.router.navigate(['/login']);
+          },
+          (error) => {
+            if (error.error && error.error.length > 0) {
+              const firstError = error.error[0];
+              this.alertError('Erro ao cadastrar usuário: ' + firstError.message);
+            } else {
+              this.alertError('Erro ao cadastrar usuário: ' + error.message);
+            }
           }
-        }
-      );
-
-      console.log('Dados enviados:', this.usuario);
+        );
+      }
     } else {
       this.alertError('Preencha todos os campos obrigatorios!');
     }
+  }
 
+  buscarCep(cep: string, formGroup: FormGroup) {
+
+    if (cep?.length === 9) {
+      this.viaCep.buscarCep(cep).subscribe(
+        (resp: any) => {
+          if (resp) {
+            formGroup.patchValue({
+              logradouro: resp.logradouro,
+              bairro: resp.bairro,
+              cidade: resp.localidade,
+              estado: resp.uf,
+              cep: resp.cep
+            });
+          }
+        },
+        (error) => {
+          this.alertError("CEP inválido");
+        }
+      );
+    }
+  }
+
+  buscarCepEntrega(event: any) {
+    let cep = event.target.value
+    if (cep) {
+      this.buscarCep(cep, this.form.get('enderecoEntrega') as FormGroup);
+    }
+  }
+
+  buscarCepFaturamento(event: any) {
+    let cep = event.target.value
+    if (cep) {
+      this.buscarCep(cep, this.form.get('enderecoFaturamento') as FormGroup);
+    }
   }
 
   adicionarContato() {
@@ -105,8 +139,6 @@ export class RegisterComponent {
     });
 
     modalRef.result.then((contato) => {
-      console.log(contato);
-
       if (contato) {
         this.contatos.push(contato);
         this.contatos = [...this.contatos];
@@ -116,7 +148,7 @@ export class RegisterComponent {
     });
   }
 
-  edit(contato: Contato) {
+  editarContato(contato: Contato) {
     const index = this.contatos.indexOf(contato);
     const modalRef = this.modalService.open(ContatoComponent);
 
@@ -131,11 +163,25 @@ export class RegisterComponent {
     });
   }
 
-  remove(contact: any) {
-    const index = this.contatos.indexOf(contact);
-    if (index > -1) {
-      this.contatos.splice(index, 1);
-    }
+  removerContato(contact: any) {
+
+    Swal.fire({
+      title: 'ATENÇÃO!',
+      text: 'Deseja realmente cancelar esta consulta?',
+      showCancelButton: true,
+      confirmButtonText: 'SIM',
+      cancelButtonText: 'NÃO',
+      icon: 'warning'
+    }).then((result) => {
+      if (result.value) {
+        const index = this.contatos.indexOf(contact);
+        if (index > -1) {
+          this.contatos.splice(index, 1);
+        }
+        this.alertSuccess('Contato excluido com sucesso!')
+      }
+    })
+
   }
 
   alertSuccess(message: string) {

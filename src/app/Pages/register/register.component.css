@@ -1,3 +1,18 @@
+body {
+  background-color: rgb(240, 240, 240);
+}
+
 .cardLogin {
   margin-top: 90px;
+}
+
+.btn-color {
+  background-color: rgb(93, 184, 37) !important;
+  border-color: rgb(93, 184, 37) !important;
+  color: white;
+}
+
+.btn-color:hover {
+  background-color: rgb(76, 151, 30) !important;
+  border-color: rgb(76, 151, 30) !important;
 }
