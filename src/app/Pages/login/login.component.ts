@@ -1,27 +1,55 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Usuario } from '../../core/types/Usuario';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Contato } from '../../core/types/Contato';
-import { ContatoComponent } from '../contato/contato.component';
-import Swal from 'sweetalert2';
-import { UsuarioService } from '../../core/services/usuario.service';
+import { LoginResponse } from '../types/login-response.model';
+import { LoginService } from '../core/services/login.service';
 
-
-@Injectable({
-  providedIn: 'root'
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class UsuarioService {
+export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
 
-  private apiUrl = '/login';
-  private urlBase: string = environment.baseUrl;
-  private headers: HttpHeaders;
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private router: Router
+  ) {}
 
-  constructor(private http: HttpClient){}
-
-  login(email : string, senha:string): observable<any>{
-
-    const body = {email, senha};
-    return this.http.post(this./this.apiUrl, body);
+  ngOnInit() {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
   }
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const formData = new FormData();
+      Object.keys(this.loginForm.controls).forEach(key => {
+        const control = this.loginForm.get(key);
+        if (control && control.value !== undefined) {
+          formData.append(key, control.value);
+        }
+      });
+
+      this.loginService.login(formData).subscribe(
+        (result: LoginResponse) => {
+          console.log('Login successful:', result);
+          if (result.success) {
+            this.router.navigate(['/home']);
+          } else {
+            alert('Falha no login: ' + result.message || 'Erro desconhecido');
+          }
+        },
+        error => {
+          console.error('Login failed:', error);
+          alert('Falha no login. Por favor, tente novamente.');
+        }
+      );
+    }
+  }
+}
