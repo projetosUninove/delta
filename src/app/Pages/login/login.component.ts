@@ -1,9 +1,8 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginResponse } from '../types/login-response.model';
-import { LoginService } from '../core/services/login.service';
+import { LoginService } from '../../core/services/login.service';
+import { LoginResponse } from '../../core/types/login-response.model';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +10,7 @@ import { LoginService } from '../core/services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  loginForm!: FormGroup; 
 
   constructor(
     private fb: FormBuilder,
@@ -21,28 +20,24 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]], 
+      password: ['', Validators.required] 
     });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const formData = new FormData();
-      Object.keys(this.loginForm.controls).forEach(key => {
-        const control = this.loginForm.get(key);
-        if (control && control.value !== undefined) {
-          formData.append(key, control.value);
-        }
-      });
+      const formData = this.loginForm.value;
 
       this.loginService.login(formData).subscribe(
         (result: LoginResponse) => {
           console.log('Login successful:', result);
-          if (result.success) {
-            this.router.navigate(['/home']);
+
+          if (result.tokenJWT) {
+            localStorage.setItem('token', result.tokenJWT);
+            this.router.navigate(['/home']); 
           } else {
-            alert('Falha no login: ' + result.message || 'Erro desconhecido');
+            alert('Falha no login: ' + (result.message || 'Erro desconhecido'));
           }
         },
         error => {

@@ -12,7 +12,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
-  login(formData: FormData): Observable<LoginResponse> {
+  login(formData: any): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.urlBase}/login`, formData)
       .pipe(
         tap(response => {
@@ -20,8 +20,8 @@ export class LoginService {
         }),
         catchError(error => {
           console.error('Erro no login:', error);
-          throw error; 
+          throw error;
         })
       );
   }
-}
+}  

@@ -1,25 +1,32 @@
 <section class="login">
-    <div class="loginContainer">
-      <div class="loginBox">
-        <h1>Faça seu login</h1><br>
-        <form (ngSubmit)="submitForm($event)" #loginForm="ngForm">
-          <div class="inputBox">
-            <label for="email">Email</label><br>
-            <input type="email" id="email" name="email" required/>
+  <div class="loginContainer">
+    <div class="loginBox">
+      <h1>Faça seu login</h1><br>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="inputBox">
+          <label for="email">Email</label><br>
+          <input type="email" id="email" formControlName="email" required />
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            <span *ngIf="loginForm.get('email')?.errors?.['required']">O email é obrigatório.</span>
+            <span *ngIf="loginForm.get('email')?.errors?.['email']">Formato de email inválido.</span>
           </div>
-          <div class="inputBox">
-            <label for="password">Senha</label><br>
-            <input id="password" type="password" required />
+        </div>
+        <div class="inputBox">
+          <label for="password">Senha</label><br>
+          <input id="password" type="password" formControlName="password" required />
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            <span *ngIf="loginForm.get('password')?.errors?.['required']">A senha é obrigatória.</span>
           </div>
-          <div class="inputBox">
-            <input id="login" type="submit" value="Entrar" />
-          </div>
-          <div class="linhaReta"></div>
-          <div class="inputCadastrar">
-            <a href="register" class="cadastrar">Cadastre-se</a>
-            <a href="forgotPass" class="cadastrar">Esqueceu a senha?</a>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div class="inputBox">
+          <input id="login" type="submit" value="Entrar" [disabled]="loginForm.invalid" />
+        </div>
+        <div class="linhaReta"></div>
+        <div class="inputCadastrar">
+          <a routerLink="/register" class="cadastrar">Cadastre-se</a>
+          <a routerLink="/forgotPass" class="cadastrar">Esqueceu a senha?</a>
+        </div>
+      </form>
     </div>
-  </section>
+  </div>
+</section>

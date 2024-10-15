@@ -8,14 +8,9 @@ export interface LoginResponse {
    
   }
   
-  export class LoginResponseImpl implements LoginResponse {
-    constructor(
-      public token?: string,
-      public userId?: number | string,
-      public email?: string,
-      public role?: string,
-      public message?: string,
-      public success?: boolean
-    ) {}
+
+  export interface LoginResponse {
+    tokenJWT: string; 
+    message?: string; 
   }
   
