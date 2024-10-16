@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../core/services/login.service';
 import { LoginResponse } from '../../core/types/login-response.model';
+import jwtDecode from 'jwt-decode';  // Importar a função jwtDecode
 
 @Component({
   selector: 'app-login',
@@ -21,11 +22,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]], 
-      senha: ['', Validators.required]  
+      senha: ['', Validators.required]
     });
   }
   
-
   onSubmit() {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
@@ -36,6 +36,14 @@ export class LoginComponent implements OnInit {
 
           if (result.tokenJWT) {
             localStorage.setItem('token', result.tokenJWT);
+
+            // Decodificar o token
+            const decodedToken: any = jwtDecode(result.tokenJWT);
+            console.log('Decoded token:', decodedToken);
+
+            // Você pode acessar informações específicas do token aqui
+            // Exemplo: console.log(decodedToken.id);
+
             this.router.navigate(['/home']); 
           } else {
             alert('Falha no login: ' + (result.message || 'Erro desconhecido'));
