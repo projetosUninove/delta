@@ -76,10 +76,19 @@
 .menuLink {
     font-size: 10px;
     text-decoration: none;
-    color: white;
+    color: rgb(95, 247, 0);
+    background-color: #000000b4;
+    margin: 0;
+    border-radius: 10px;
   }
   
   .menuLink:hover {
     color: rgb(93, 184, 37)
   ;
   }
+
+.menuMsg{
+
+  background-color: #000000;
+  color: rgb(93, 184, 37);
+}
