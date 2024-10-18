@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Usuario } from '../../core/types/Usuario';
+import { Usuario } from '../../types/Usuario';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Contato } from '../../core/types/Contato';
+import { Contato } from '../../types/Contato';
 import { ContatoComponent } from '../contato/contato.component';
 import Swal from 'sweetalert2';
 import { UsuarioService } from '../../core/services/usuario.service';
