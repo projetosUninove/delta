@@ -26,6 +26,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { RegisterComponent } from './Pages/register/register.component';
 import { ContatoComponent } from './Pages/contato/contato.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     MatTabsModule,
+    NgxMaskDirective, NgxMaskPipe,
     HttpClientModule,
     NgIconsModule.withIcons({
       ionPersonOutline,
@@ -58,7 +60,7 @@ import { HttpClientModule } from '@angular/common/http';
       ionLogoInstagram,
     }),
   ],
-  providers: [provideAnimationsAsync()],
+  providers: [provideAnimationsAsync(), provideNgxMask()],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

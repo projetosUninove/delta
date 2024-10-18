@@ -18,8 +18,8 @@ export class UsuarioService {
     this.headers = new HttpHeaders();
   }
 
-  cadastrar(usuario: Usuario): Observable<any> {
-    return this.http.post<any>(`${this.urlBase}/usuario`, usuario)
+  cadastrar(usuario: Usuario): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.urlBase}/usuario`, usuario)
   }
 
 }

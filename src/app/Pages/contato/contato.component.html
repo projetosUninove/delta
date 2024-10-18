@@ -18,7 +18,7 @@
 
                         <div class="form-group col-md-6">
                             <label for="telefone" class="mb-1 mt-3">Telefone*</label>
-                            <input formControlName="telefone" class="form-control" type="text" id="telefone"
+                            <input formControlName="telefone" mask="(00) 00000-0000" class="form-control" type="text" id="telefone"
                                 placeholder="Ex: (11) 12345-6789">
                             <small class="form-text text-danger"
                                 *ngIf="form.get('telefone')?.invalid && (form.get('telefone')?.dirty || form.get('telefone')?.touched)">Campo
@@ -29,7 +29,7 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="celular" class="mb-1 mt-3">Celular</label>
-                            <input formControlName="celular" class="form-control" type="text"
+                            <input formControlName="celular" mask="(00) 00000-0000" class="form-control" type="text"
                                 id="celular" placeholder="Ex: (11) 12345-6789">
                             <small class="form-text text-danger"
                                 *ngIf="form.get('celular')?.invalid && (form.get('celular')?.dirty || form.get('celular')?.touched)">Campo
