@@ -25,8 +25,8 @@ import { FornecedoresComponent } from './Pages/fornecedores/fornecedores.compone
 import { MatTabsModule } from '@angular/material/tabs';
 import { RegisterComponent } from './Pages/register/register.component';
 import { ContatoComponent } from './Pages/contato/contato.component';
-import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { EstoqueComponent } from './Pages/estoque/estoque.component';
 
 @NgModule({
   declarations: [
@@ -42,8 +42,13 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     RegisterComponent,
     CarrinhoComponent,
     ForgotPassComponent,
+<<<<<<< Updated upstream
     FornecedoresComponent,
     ContatoComponent,
+=======
+     ContatoComponent,
+     EstoqueComponent,
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,6 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     ReactiveFormsModule,
     MatTabsModule,
     NgxMaskDirective, NgxMaskPipe,
-    HttpClientModule,
     NgIconsModule.withIcons({
       ionPersonOutline,
       ionLogoWhatsapp,
