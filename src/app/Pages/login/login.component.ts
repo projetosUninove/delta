@@ -10,7 +10,7 @@ import { LoginResponse } from '../../core/types/login-response.model';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup; 
+  loginForm!: FormGroup;  
 
   constructor(
     private fb: FormBuilder,
@@ -25,27 +25,32 @@ export class LoginComponent implements OnInit {
     });
   }
   
-
   onSubmit() {
     if (this.loginForm.valid) {
-      const formData = this.loginForm.value;
+      const formData = this.loginForm.value; 
 
       this.loginService.login(formData).subscribe(
         (result: LoginResponse) => {
-          console.log('Login successful:', result);
+          console.log('Login bem-sucedido:', result);
 
           if (result.tokenJWT) {
             localStorage.setItem('token', result.tokenJWT);
+            
+            const decodedToken = this.loginService.decodeToken(result.tokenJWT);
+            console.log('Token Decodificado:', decodedToken);
+
             this.router.navigate(['/home']); 
           } else {
             alert('Falha no login: ' + (result.message || 'Erro desconhecido'));
           }
         },
         error => {
-          console.error('Login failed:', error);
+          console.error('Falha no login:', error);
           alert('Falha no login. Por favor, tente novamente.');
         }
       );
+    } else {
+      alert('Por favor, preencha todos os campos corretamente.');
     }
   }
 }

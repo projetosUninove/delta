@@ -30,7 +30,7 @@ export class LoginService {
           throw error;
         })
       );
-  }
+    }
 
   logout() {
     localStorage.removeItem('token'); // Remove o token
@@ -41,4 +41,25 @@ export class LoginService {
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token'); // Verifica se o token existe
   }
+
+  decodeToken(token: string): any {
+    try {
+      const parts = token.split('.');
+      if (parts.length !== 3) {
+        throw new Error('Token inválido');
+      }
+      
+      const payload = parts[1];
+      const base64Url = payload.replace(/-/g, '+').replace(/_/g, '/');
+      const base64 = decodeURIComponent(atob(base64Url).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+
+      return JSON.parse(base64); // Retorna o payload decodificado do token
+    } catch (error) {
+      console.error('Erro ao decodificar o token:', error);
+      return null;
+    }
+  }
 }
+
