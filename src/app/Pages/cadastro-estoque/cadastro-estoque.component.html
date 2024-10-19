@@ -1,0 +1,36 @@
+<section class="cadastro-estoque">
+  <h2>Gerencie seu Estoque</h2>
+
+  <div class="form-container">
+    <form (ngSubmit)="cadastrarProduto()" class="formulario-produto">
+      <div class="form-group">
+        <label for="nome">Nome do Produto:</label>
+        <input type="text" id="nome" [(ngModel)]="produto.nome" name="nome" required placeholder="Digite o nome do produto" />
+      </div>
+
+      <div class="form-group">
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade" [(ngModel)]="produto.quantidade" name="quantidade" min="1" required placeholder="Digite a quantidade" />
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" [(ngModel)]="produto.descricao" name="descricao" placeholder="Descreva o produto"></textarea>
+      </div>
+
+      <button type="submit" class="btn-cadastrar">Adicionar ao Estoque</button>
+    </form>
+  </div>
+
+  <div class="lista-estoque" *ngIf="estoque.length > 0">
+    <h3>Produtos no Estoque</h3>
+    <div class="produto-grid">
+      <div *ngFor="let produto of estoque; let i = index" class="produto-card">
+        <h4>{{ produto.nome }}</h4>
+        <p><strong>Quantidade:</strong> {{ produto.quantidade }} unidades</p>
+        <p>{{ produto.descricao }}</p>
+        <button (click)="removerProduto(i)" class="btn-remover">Remover</button>
+      </div>
+    </div>
+  </div>
+</section>

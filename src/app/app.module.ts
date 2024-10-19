@@ -26,6 +26,7 @@ import { RegisterComponent } from './Pages/register/register.component';
 import { ContatoComponent } from './Pages/contato/contato.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { CadastroEstoqueComponent } from './Pages/cadastro-estoque/cadastro-estoque.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     CarrinhoComponent,
     ForgotPassComponent,
      ContatoComponent,
+     CadastroEstoqueComponent,
   ],
   imports: [
     BrowserModule,

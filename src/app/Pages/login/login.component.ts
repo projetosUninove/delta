@@ -1,66 +1,80 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginService } from '../../core/services/login.service';
+import { LoginResponse } from '../../login-response.model.service';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private router: Router
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      senha: ['', Validators.required]
     });
   }
 
-  submitForm(): void {
-    if (this.loginForm.invalid) {
-      const email = this.loginForm.get('email');
-      const password = this.loginForm.get('password');
+  alertSuccess(message: string) {
+    Swal.fire({
+      title: `<h5 style="color:green">${message}</h5>`,
+      icon: 'success',
+      confirmButtonText: 'OK',
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
 
-      if (email?.hasError('required')) {
-        Swal.fire({
-          title: 'Erro',
-          text: 'Por Favor, insira um email.',
-          icon: 'error',
-          confirmButtonText: 'Ok',
-        });
-      } else if (email?.hasError('email')) {
-        Swal.fire({
-          title: 'Erro',
-          text: 'Por Favor, insira um email válido.',
-          icon: 'error',
-          timer: 2000,
-        });
-      } else if (password?.hasError('required')) {
-        Swal.fire({
-          title: 'Erro',
-          text: 'Por Favor, insira uma senha.',
-          icon: 'error',
-          confirmButtonText: 'Ok',
-        });
-      } else if (password?.hasError('minlength')) {
-        Swal.fire({
-          title: 'Erro',
-          text: 'Por Favor, insira uma senha com no mínimo 6 caracteres.',
-          icon: 'error',
-          timer: 2000,
-        });
-      }
+  alertError(message: string) {
+    Swal.fire({
+      title: `<h5>${message}</h5>`,
+      icon: 'error',
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'OK',
+      showConfirmButton: false,
+      timer: 2000
+    });
+  }
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const formData = this.loginForm.value;
+
+      this.loginService.login(formData).subscribe(
+        (result: LoginResponse) => {
+          console.log('Login bem-sucedido:', result);
+
+          if (result.tokenJWT) {
+            localStorage.setItem('token', result.tokenJWT);
+
+            const decodedToken = this.loginService.decodeToken(result.tokenJWT);
+            console.log('Token Decodificado:', decodedToken);
+
+            this.alertSuccess('Login bem-sucedido!');
+            this.router.navigate(['/home']);
+          } else {
+            this.alertError(result.message || 'Erro desconhecido');
+          }
+        },
+        error => {
+          console.error('Falha no login:', error);
+          this.alertError('Falha no login. Por favor, tente novamente.');
+        }
+      );
     } else {
-      Swal.fire({
-        title: 'Sucesso',
-        text: 'Login efetuado com sucesso!',
-        icon: 'success',
-        timer: 2000,
-      });
-      
+      this.alertError('Por favor, preencha todos os campos corretamente.');
+
     }
   }
 }
