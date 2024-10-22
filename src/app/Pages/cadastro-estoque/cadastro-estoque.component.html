@@ -18,6 +18,16 @@
         <textarea id="descricao" [(ngModel)]="produto.descricao" name="descricao" placeholder="Descreva o produto"></textarea>
       </div>
 
+      <div class="form-group">
+        <label for="preco">Preço:</label>
+        <input type="number" id="preco" [(ngModel)]="produto.preco" name="preco" min="0" required placeholder="Digite o preço" />
+      </div>
+
+      <div class="form-group">
+        <label for="imagem">Imagem:</label>
+        <input type="file" id="imagem" (change)="onFileSelected($event)" accept="image/*" />
+      </div>
+      
       <button type="submit" class="btn-cadastrar">Adicionar ao Estoque</button>
     </form>
   </div>
@@ -28,6 +38,7 @@
       <div *ngFor="let produto of estoque; let i = index" class="produto-card">
         <h4>{{ produto.nome }}</h4>
         <p><strong>Quantidade:</strong> {{ produto.quantidade }} unidades</p>
+        <p><strong>Preço:</strong> {{ produto.preco | currency }}</p>
         <p>{{ produto.descricao }}</p>
         <button (click)="removerProduto(i)" class="btn-remover">Remover</button>
       </div>
