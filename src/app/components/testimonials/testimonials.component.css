@@ -3,12 +3,12 @@
   }
   
   .testimonials-name {
-    color: rgb(0, 0, 0)
+    color: rgb(252, 252, 252)
   ;
   }
   
   .testimonial-text {
-    color: rgb(0, 0, 0)
+    color: rgb(255, 255, 255)
   ;
   }
   
@@ -25,7 +25,7 @@
     max-width: 1200px;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #ffffff;
+    background-color: #000000;
     color: rgb(93, 184, 37)
   ;
     margin: 80px auto 0;

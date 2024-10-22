@@ -6,9 +6,8 @@ import { LoginComponent } from './Pages/login/login.component';
 import { RegisterComponent } from './Pages/register/register.component';
 import { CarrinhoComponent } from './Pages/carrinho/carrinho.component';
 import { ForgotPassComponent } from './Pages/forgot-pass/forgot-pass.component';
-import { FornecedoresComponent } from './Pages/fornecedores/fornecedores.component';
 import { EstoqueComponent } from './Pages/estoque/estoque.component';
-
+import { FornecedoresComponent } from '../../delta/src/app/Pages/fornecedores/fornecedores.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'products', component: ProductsComponent },

@@ -10,7 +10,7 @@
   }
   
   .introduction > p {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
   }
   
   span {
@@ -27,8 +27,8 @@
     max-width: 1200px;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #ffffff;
-    color: rgb(0, 0, 0)
+    background-color: #000000;
+    color: rgb(245, 242, 242)
   ;
     margin: 80px auto 0;
   }
@@ -50,7 +50,7 @@
   
   .content > p {
     margin-left: 25px;
-    color: #000000;
+    color: #ffffff;
   }
 
   @media (max-width: 768px) {

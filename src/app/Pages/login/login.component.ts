@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../core/services/login.service';
-import { LoginResponse } from '../../core/types/login-response.model';
+import { LoginResponse } from '../../login-response.model.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,17 +11,17 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;  
+  loginForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]], 
+      email: ['', [Validators.required, Validators.email]],
       senha: ['', Validators.required]
     });
   }
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       icon: 'success',
       confirmButtonText: 'OK',
       showConfirmButton: false,
-      timer: 1500 
+      timer: 1500
     });
   }
 
@@ -43,13 +43,13 @@ export class LoginComponent implements OnInit {
       confirmButtonColor: '#d33',
       confirmButtonText: 'OK',
       showConfirmButton: false,
-      timer: 2000 
+      timer: 2000
     });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const formData = this.loginForm.value;  
+      const formData = this.loginForm.value;
 
       this.loginService.login(formData).subscribe(
         (result: LoginResponse) => {
@@ -57,12 +57,12 @@ export class LoginComponent implements OnInit {
 
           if (result.tokenJWT) {
             localStorage.setItem('token', result.tokenJWT);
-            
+
             const decodedToken = this.loginService.decodeToken(result.tokenJWT);
             console.log('Token Decodificado:', decodedToken);
 
             this.alertSuccess('Login bem-sucedido!');
-            this.router.navigate(['/home']); 
+            this.router.navigate(['/home']);
           } else {
             this.alertError(result.message || 'Erro desconhecido');
           }
@@ -74,6 +74,7 @@ export class LoginComponent implements OnInit {
       );
     } else {
       this.alertError('Por favor, preencha todos os campos corretamente.');
+
     }
   }
 }

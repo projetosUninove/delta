@@ -21,12 +21,12 @@ import { CarrinhoComponent } from './Pages/carrinho/carrinho.component';
 import { ForgotPassComponent } from './Pages/forgot-pass/forgot-pass.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { FornecedoresComponent } from './Pages/fornecedores/fornecedores.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RegisterComponent } from './Pages/register/register.component';
 import { ContatoComponent } from './Pages/contato/contato.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { CadastroEstoqueComponent } from './Pages/cadastro-estoque/cadastro-estoque.component';
 
 @NgModule({
   declarations: [
@@ -42,8 +42,8 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     RegisterComponent,
     CarrinhoComponent,
     ForgotPassComponent,
-    FornecedoresComponent,
-    ContatoComponent,
+     ContatoComponent,
+     CadastroEstoqueComponent,
   ],
   imports: [
     BrowserModule,

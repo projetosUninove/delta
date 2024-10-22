@@ -1,0 +1,20 @@
+<div class="estoque-container">
+    <h1>Gestão de Estoque</h1>
+  
+    <div class="product-list">
+      <div *ngFor="let produto of produtos" class="product-card">
+        <h3>{{ produto.nome }}</h3>
+        <p>Quantidade: {{ produto.quantidade }}</p>
+        <div class="actions">
+          <button (click)="adicionar(produto)">Adicionar</button>
+          <button (click)="retirar(produto)">Retirar</button>
+          <button (click)="excluir(produto)">Excluir</button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="total-produtos">
+      <p>Total de produtos no estoque: {{ calcularTotal() }}</p>
+    </div>
+  </div>
+  

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, catchError, tap } from 'rxjs';
-import { LoginResponse } from '../types/login-response.model';
+import { LoginResponse } from '../../login-response.model.service';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -9,9 +9,9 @@ import { environment } from '../../../environments/environment';
 })
 export class LoginService {
   private urlBase = environment.baseUrl;
-  private loggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn()); // Estado inicial
+  private loggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn()); 
 
-  loggedIn$ = this.loggedInSubject.asObservable(); // Observable para outros componentes
+  loggedIn$ = this.loggedInSubject.asObservable(); 
 
   constructor(private http: HttpClient) {}
 
@@ -22,7 +22,7 @@ export class LoginService {
           console.log('Login bem-sucedido:', response);
           if (response.tokenJWT) {
             localStorage.setItem('token', response.tokenJWT);
-            this.loggedInSubject.next(true); // Atualiza o estado para logado
+            this.loggedInSubject.next(true); 
           }
         }),
         catchError(error => {
@@ -33,13 +33,12 @@ export class LoginService {
     }
 
   logout() {
-    localStorage.removeItem('token'); // Remove o token
-    this.loggedInSubject.next(false); // Atualiza o estado para deslogado
+    localStorage.removeItem('token'); 
+    this.loggedInSubject.next(false); 
   }
 
-  // Método público que verifica se o usuário está logado
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('token'); // Verifica se o token existe
+    return !!localStorage.getItem('token'); 
   }
 
   decodeToken(token: string): any {
@@ -55,7 +54,7 @@ export class LoginService {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
       }).join(''));
 
-      return JSON.parse(base64); // Retorna o payload decodificado do token
+      return JSON.parse(base64); 
     } catch (error) {
       console.error('Erro ao decodificar o token:', error);
       return null;
