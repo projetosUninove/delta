@@ -1,0 +1,11 @@
+<div class="containerCards">
+  <div class="card" *ngFor="let item of itens">
+    <img [src]="item.imagem" class="card-img-top" alt="{{ item.nome }}">
+    <div class="card-body">
+      <h5 class="card-title">{{ item.nome }}</h5>
+      <p class="card-text">{{ item.descricao }}</p>
+      <p class="product-price">{{ item.preco | currency:'BRL':'symbol' }}</p>
+      <a href="#" class="btn buy-button">Compre Já</a>
+    </div>
+  </div>
+</div>
