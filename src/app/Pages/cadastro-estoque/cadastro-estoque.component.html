@@ -40,6 +40,7 @@
         <p><strong>Quantidade:</strong> {{ produto.quantidade }} unidades</p>
         <p><strong>Preço:</strong> {{ produto.preco | currency }}</p>
         <p>{{ produto.descricao }}</p>
+        <img *ngIf="produto.imagem" [src]="produto.imagem" alt="{{ produto.nome }}" class="produto-imagem" />
         <button (click)="removerProduto(i)" class="btn-remover">Remover</button>
       </div>
     </div>

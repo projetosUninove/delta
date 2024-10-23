@@ -25,8 +25,7 @@ export class CadastroEstoqueComponent {
     this.produtoService.cadastrar(this.produto).subscribe(
       (response) => {
         console.log('Produto cadastrado com sucesso', response);
-        // Atualiza o estoque local com a resposta do servidor
-        this.estoque.push(response);
+        this.estoque.push(response); // Atualiza o estoque local com a resposta do servidor
         this.resetarFormulario();
       },
       (error) => {

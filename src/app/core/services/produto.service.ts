@@ -9,15 +9,15 @@ import { environment } from '../../../environments/environment';
 })
 export class ProdutoService {
   
-  private urlBase = environment.baseUrl; // Base URL do seu backend
+  private urlBase = environment.baseUrl;
 
   constructor(private http: HttpClient) {}
 
   private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token'); // Pega o token do localStorage
+    const token = localStorage.getItem('token');
     return new HttpHeaders({
-      'Authorization': `Bearer ${token}`, // Adiciona o token no cabeçalho
-      'Content-Type': 'application/json'
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
     });
   }
 
@@ -26,20 +26,21 @@ export class ProdutoService {
       .pipe(
         tap(response => {
           console.log('Produto cadastrado com sucesso:', response);
+          return this.listar(); // Busca os dados mais recentes após inserção bem-sucedida
         }),
         catchError(error => {
           console.error('Erro ao cadastrar o produto:', error);
-          throw error; // Repassa o erro
+          throw error;
         })
       );
   }
 
-  listar(): Observable<Produto[]> {
-    return this.http.get<Produto[]>(`${this.urlBase}/produtos`, { headers: this.getHeaders() })
+  listar(page: number = 1, pageSize: number = 10): Observable<{ produtos: Produto[], totalItems: number }> {
+    return this.http.get<{ produtos: Produto[], totalItems: number }>(`${this.urlBase}/produtos?page=${page}&size=${pageSize}`, { headers: this.getHeaders() })
       .pipe(
         catchError(error => {
           console.error('Erro ao listar produtos:', error);
-          throw error; // Repassa o erro
+          throw error;
         })
       );
   }
