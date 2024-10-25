@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { CadastroEstoqueComponent } from './Pages/cadastro-estoque/cadastro-estoque.component';
 import { ListaItensComponent } from './lista-itens/lista-itens.component';
+import { EstoqueComponent } from './Pages/estoque/estoque.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ListaItensComponent } from './lista-itens/lista-itens.component';
      ContatoComponent,
      CadastroEstoqueComponent,
      ListaItensComponent,
+     EstoqueComponent,
   ],
   imports: [
     BrowserModule,

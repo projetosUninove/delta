@@ -9,6 +9,7 @@ import { Item } from '../types/item'; // Altere o caminho se necessário
 })
 export class ListaItensComponent implements OnInit {
   itens: Item[] = [];
+item: any;
 
   constructor(private itemService: ItemService) {}
 
