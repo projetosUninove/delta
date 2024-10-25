@@ -29,6 +29,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { CadastroEstoqueComponent } from './Pages/cadastro-estoque/cadastro-estoque.component';
 import { ListaItensComponent } from './lista-itens/lista-itens.component';
 import { EstoqueComponent } from './Pages/estoque/estoque.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { EstoqueComponent } from './Pages/estoque/estoque.component';
      CadastroEstoqueComponent,
      ListaItensComponent,
      EstoqueComponent,
+     EditProductComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,14 @@
   gap: 30px;
   background-color: #121212;
 }
-
+h3 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #00ff15;
+  align-items: center;
+  position: relative;
+  margin-left: 750px;
+}
 .card {
   background-color: #1e1e1e;
   border-radius: 15px;
