@@ -2,10 +2,13 @@
   <div *ngFor="let item of itens" class="card">
     <img [src]="item.imagem" class="card-img-top" alt="Imagem do Produto">
     <div class="card-body">
-      <h5 class="card-title">{{item.nome}}</h5>
-      <p class="card-text">{{item.descricao}}</p>
-      <p class="product-price">R$ {{item.preco | number: '1.2-2'}}</p> <!-- Formatação do preço -->
-      <a href="#" class="btn btn-primary buy-button">Compre Já</a> <!-- Alterado para # para evitar reload -->
+      <h5 class="card-title">{{ item.nome }}</h5>
+      <p class="card-text">{{ item.descricao }}</p>
+      <p class="product-price">R$ {{ item.preco | number: '1.2-2' }}</p>
+      
+      <input type="number" [(ngModel)]="quantidade[item.id]" min="1" placeholder="Quantidade" class="form-control" />
+
+      <button (click)="adicionarAoCarrinho(item)" class="btn btn-primary buy-button">Adicionar ao Carrinho</button>
     </div>
   </div>
 </div>
