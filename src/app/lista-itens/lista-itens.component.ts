@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../core/services/item.service';
+import { UsuarioService } from '../core/services/usuario.service'; // Certifique-se de ajustar o caminho
 import { Item } from '../types/item';
+import { Usuario } from '../types/Usuario'; // Ajuste para importar o tipo correto do usuário
 
 @Component({
   selector: 'app-lista-itens',
@@ -11,40 +13,17 @@ export class ListaItensComponent implements OnInit {
   itens: Item[] = [];
   quantidade: { [key: number]: number } = {};
   public usuarioId: number | null = null;
-  
+  public usuario: Usuario | null = null; // Defina o tipo apropriado para os detalhes do usuário
 
-  constructor(private itemService: ItemService) {}
+  constructor(
+    private itemService: ItemService,
+    private usuarioService: UsuarioService // Adicione o serviço de usuário
+  ) {}
 
   ngOnInit() {
     this.carregarItens();
-    this.obterUsuarioId();
+    this.obterUsuarioId(); // Chama o método para obter o ID do usuário
   }
-
-  async obterUsuarioId() {
-    try {
-      // Garantimos que obterUsuarioId está definido no ItemService
-      if (!this.itemService || !this.itemService.obterUsuarioId) {
-        throw new Error('ItemService não está inicializado ou falta método obterUsuarioId');
-      }
-  
-      await this.itemService.obterUsuarioId();
-      
-      // Verificamos se o usuarioId foi definido com sucesso
-      if (!this.itemService.usuarioId) {
-        throw new Error('usuarioId não foi definido após obterUsuarioId');
-      }
-      
-      this.usuarioId = this.itemService.usuarioId;
-      console.log('ID do usuário obtido com sucesso:', this.usuarioId);
-  
-      return true; // Indica que a operação foi bem-sucedida
-    } catch (error) {
-      console.error('Erro ao obter o ID do usuário:', error);
-      alert(`Erro ao obter o ID do usuário. Por favor, tente novamente.\n`);
-      return false; // Indica falha na operação
-    }
-  }
-  
 
   carregarItens() {
     this.itemService.listar().subscribe({
@@ -59,28 +38,29 @@ export class ListaItensComponent implements OnInit {
     });
   }
 
-  adicionarAoCarrinho(item: Item): void {
-    const quantidade = this.quantidade[item.id] || 0;
-
-    if (quantidade <= 0) {
-      alert('Por favor, insira uma quantidade válida.');
-      return;
-    }
-
-    if (!this.usuarioId) {
-      alert('Usuário não autenticado. Por favor, faça login.');
-      return;
-    }
-
-    this.itemService.addToCart(item.id, this.usuarioId, quantidade).subscribe({
-      next: () => {
-        this.quantidade[item.id] = 0; // Reseta a quantidade após adicionar ao carrinho
-        console.log(`Item ${item.nome} adicionado ao carrinho com sucesso.`);
+  obterUsuarioId() {
+    this.usuarioService.obterUsuarioId().subscribe({
+      next: (id: number | null) => {
+        this.usuarioId = id; 
+        this.obterUsuario(); 
       },
-      error: (error) => {
-        console.error('Erro ao adicionar ao carrinho:', error);
-        alert('Erro ao adicionar o item ao carrinho. Tente novamente.');
-      }
     });
+  }
+
+  obterUsuario() {
+    if (this.usuarioId !== null) {
+      this.usuarioService.obterUsuarioPorId(this.usuarioId).subscribe({
+        next: (data) => {
+          this.usuario = data; // Armazena os detalhes do usuário
+          console.log('Detalhes do usuário:', this.usuario);
+        },
+        error: (error) => {
+          console.error('Erro ao obter detalhes do usuário', error);
+          alert('Erro ao obter detalhes do usuário. Tente novamente.');
+        }
+      });
+    } else {
+      console.error('ID do usuário não definido');
+    }
   }
 }

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../../core/services/item.service';
 import { Item } from '../../types/item';
 import { catchError, Observable, tap, throwError } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProdutoService } from '../../core/services/produto.service';
 
 @Component({
   selector: 'app-estoque',
@@ -12,11 +13,21 @@ import { Router } from '@angular/router';
 export class EstoqueComponent implements OnInit {
   itens: Item[] = [];
   produtoEdicao: Item | null = null;
-
+  id!: number | null;
   constructor(
     private itemService: ItemService,
-    private router: Router
-  ) {}
+    private produtoService: ProdutoService,
+
+    private router: Router,
+    private route: ActivatedRoute,
+    ) {
+      this.route.params.subscribe(params => {
+        this.id = params['id'];
+  
+      });
+    }
+
+  
 
   ngOnInit() {
     this.carregarItens();
@@ -62,16 +73,18 @@ export class EstoqueComponent implements OnInit {
     this.produtoEdicao = null; // Cancela a edição
   }
 
-  excluir(produtoId: number) {
-    this.itemService.excluir(produtoId).subscribe(
-      () => {
-        this.itens = this.itens.filter((i) => i.id !== produtoId); // Remove o item da lista
-        console.log(`Produto ${produtoId} excluído com sucesso`);
+  deletarProduto(id: number) {
+    this.itemService.deletarProduto(id).subscribe({
+      next: () => {
+        console.log('Produto deletado com sucesso');
+        this.carregarItens(); // Recarrega os itens para refletir as mudanças
       },
-      (error) => {
-        console.error('Erro ao excluir produto', error);
-        alert('Erro ao excluir produto. Tente novamente.');
+      error: (error) => {
+        console.error('Erro ao deletar produto', error);
+        alert('Erro ao deletar produto. Tente novamente.');
       }
-    );
+    });
   }
-}
+  
+  
+  }

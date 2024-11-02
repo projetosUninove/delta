@@ -50,6 +50,9 @@ export class ProdutoService {
       );
   }
 
+  deletarProduto(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.urlBase}/produto/${id}`);}
+  
   buscarProdutoPorId(id: number): Observable<Produto> {
     return this.http.get<Produto>(`${this.urlBase}/produto/${id}`, { headers: this.headers })
   }

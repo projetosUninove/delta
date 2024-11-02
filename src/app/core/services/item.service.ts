@@ -12,6 +12,7 @@ export interface CarrinhoDto {
 @Injectable({
   providedIn: 'root'
 })
+
 export class ItemService {
   private baseUrl = environment.baseUrl;
   private headers: HttpHeaders;
@@ -19,6 +20,15 @@ export class ItemService {
   constructor(private http: HttpClient) {
     this.headers = this.getHeaders();
     this.obterUsuarioId().then(() => console.log('ID do usuário obtido com sucesso'));
+  }
+
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    console.log('Token:', token); // Verifique o valor do token
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
   }
 
   async obterUsuarioId(): Promise<void> {
@@ -32,8 +42,8 @@ export class ItemService {
       this.usuarioId = response.id; // Armazena o ID do usuário
     } catch (error) {
       console.error('Erro ao obter o ID do usuário:', error);
-      this.usuarioId = null; // Certifique-se de que é definido como null em caso de erro
-      throw error; // Lance o erro para que ele possa ser tratado no componente
+      this.usuarioId = null; 
+      throw error; 
     }
 }
 
@@ -50,34 +60,11 @@ export class ItemService {
       catchError(this.handleError<Item>('editar'))
     );
   }
-
-  excluir(produtoId: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/products/${produtoId}`, { headers: this.headers }).pipe(
-      catchError(this.handleError<void>('excluir'))
+  
+  deletarProduto(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/produto/${id}`, { headers: this.headers }).pipe(
+      catchError(this.handleError<any>('deletarProduto'))
     );
-  }
-
-  addToCart(itemId: number, usuarioId: number | null, quantidade: number): Observable<any> {
-    if (!usuarioId) {
-      throw new Error('Usuário não autenticado');
-    }
-    const url = `${this.baseUrl}/carrinho/${usuarioId}`;
-    const body = {
-      produtoId: itemId, // Corrigido para produtoId conforme seu DTO
-      quantidade
-    };
-
-    return this.http.post(url, body, { headers: this.headers });
-}
-
-
-  private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
-    console.log('Token:', token); // Verifique o valor do token
-    return new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    });
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
