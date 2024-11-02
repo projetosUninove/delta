@@ -25,24 +25,10 @@
 
       <div class="form-group">
         <label for="imagem">Imagem:</label>
-        <input type="file" id="imagem" (change)="onFileSelected($event)" accept="image/*" />
+        <input type="text" id="imagem" [(ngModel)]="produto.imagem" name="imagem" placeholder="Digite a url da imagem"/>
       </div>
       
       <button type="submit" class="btn-cadastrar">Adicionar ao Estoque</button>
     </form>
-  </div>
-
-  <div class="lista-estoque" *ngIf="estoque.length > 0">
-    <h3>Produtos no Estoque</h3>
-    <div class="produto-grid">
-      <div *ngFor="let produto of estoque; let i = index" class="produto-card">
-        <h4>{{ produto.nome }}</h4>
-        <p><strong>Quantidade:</strong> {{ produto.quantidade }} unidades</p>
-        <p><strong>Preço:</strong> {{ produto.preco | currency }}</p>
-        <p>{{ produto.descricao }}</p>
-        <img *ngIf="produto.imagem" [src]="produto.imagem" alt="{{ produto.nome }}" class="produto-imagem" />
-        <button (click)="removerProduto(i)" class="btn-remover">Remover</button>
-      </div>
-    </div>
   </div>
 </section>
