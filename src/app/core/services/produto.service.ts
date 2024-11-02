@@ -12,32 +12,18 @@ export class ProdutoService {
 
   private urlBase = environment.baseUrl;
   private headers: HttpHeaders;
-  private usuarioId: number | null = null;
 
   constructor(private http: HttpClient) {
     this.headers = this.getHeaders();
   }
 
-  private decodeToken(token: string): any {
-    try {
-      const parts = token.split('.');
-      if (parts.length !== 3) {
-        throw new Error('Token inválido');
-      }
-      
-      const payload = parts[1];
-      const base64Url = payload.replace(/-/g, '+').replace(/_/g, '/');
-      const base64 = decodeURIComponent(atob(base64Url).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
-
-      return JSON.parse(base64); 
-    } catch (error) {
-      console.error('Erro ao decodificar o token:', error);
-      return null;
-    }
-  }
-
-  getUsuarioId(): number | null {
-    return this.usuarioId;
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    console.log('Token:', token); // Verifique o valor do token
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
   }
 
   cadastrar(produto: Produto): Observable<Produto> {
@@ -54,28 +40,6 @@ export class ProdutoService {
       );
   }
 
-  addToCart(itemId: number, usuarioId: number | null, quantidade: number): Observable<any> {
-    if (!usuarioId) {
-      throw new Error('Usuário não autenticado');
-    }
-    const url = `${this.urlBase}/carrinho/${usuarioId}`;
-    const body = {
-      itemId,
-      quantidade
-    };
-
-    return this.http.post(url, body, { headers: this.headers });
-  }
-
-  private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
-    console.log('Token:', token); // Verifique o valor do token
-    return new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    });
-  }
-
   listar(page: number = 1, pageSize: number = 10): Observable<{ produtos: Produto[], totalItems: number }> {
     return this.http.get<{ produtos: Produto[], totalItems: number }>(`${this.urlBase}/produtos?page=${page}&size=${pageSize}`, { headers: this.headers })
       .pipe(
@@ -85,4 +49,13 @@ export class ProdutoService {
         })
       );
   }
+
+  buscarProdutoPorId(id: number): Observable<Produto> {
+    return this.http.get<Produto>(`${this.urlBase}/produto/${id}`, { headers: this.headers })
+  }
+
+  atualizarProduto(id: number, produto: Produto): Observable<Produto> {
+    return this.http.put<Produto>(`${this.urlBase}/produto/${id}`, produto, { headers: this.headers })
+  }
+
 }

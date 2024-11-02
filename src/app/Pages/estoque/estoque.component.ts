@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../../core/services/item.service';
 import { Item } from '../../types/item';
 import { catchError, Observable, tap, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-estoque',
@@ -12,7 +13,10 @@ export class EstoqueComponent implements OnInit {
   itens: Item[] = [];
   produtoEdicao: Item | null = null;
 
-  constructor(private itemService: ItemService) {}
+  constructor(
+    private itemService: ItemService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.carregarItens();
@@ -31,8 +35,8 @@ export class EstoqueComponent implements OnInit {
     );
   }
 
-  prepararEdicao(item: Item) {
-    this.produtoEdicao = { ...item }; // Faz uma cópia do item a ser editado
+  editar(id: number) {
+    this.router.navigate(['/cadastro-estoque', id]);
   }
 
   salvarEdicao() {

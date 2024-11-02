@@ -1,8 +1,8 @@
-export interface Item {
-  id: number;
-  nome: string;
-  descricao: string;
-  preco: number;
-  imagem: string;
-  quantidade: number;
+export class Item {
+  id!: number;
+  nome!: string;
+  descricao!: string;
+  preco!: number;
+  imagem!: string;
+  quantidade!: number;
 }

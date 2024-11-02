@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'forgotPass', component: ForgotPassComponent },
   { path: 'estoque', component: EstoqueComponent },
   { path: 'cadastro-estoque', component:CadastroEstoqueComponent},
+  { path: 'cadastro-estoque/:id', component:CadastroEstoqueComponent},
   {path: 'lista-itens', component:ListaItensComponent}
 ];
 
